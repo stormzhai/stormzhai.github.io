@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>my first post on Even - A super concise theme for Hugo</title>
+    <link>http://sormzhai.github.io/posts/</link>
+    <description>Recent content in my first post on Even - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Nov 2019 18:09:17 +0800</lastBuildDate>
+    
+	<atom:link href="http://sormzhai.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git commond list</title>
+      <link>http://sormzhai.github.io/posts/2019-12-13t131735/</link>
+      <pubDate>Fri, 13 Dec 2019 13:17:35 +0800</pubDate>
+      
+      <guid>http://sormzhai.github.io/posts/2019-12-13t131735/</guid>
+      <description>Git配置 1 2 3 4 5 6 7 8 9 git config --global user.name &amp;#34;storm&amp;#34; git config --global user.email &amp;#34;stormzhang.dev@gmail.com&amp;#34; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &amp;#34;vim&amp;#34; # 设置Editor使用vi</description>
+    </item>
+    
+  </channel>
+</rss>
