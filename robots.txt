@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://sormzhai.github.io/sitemap.xml
+Sitemap: http://stormzhai.github.io/sitemap.xml

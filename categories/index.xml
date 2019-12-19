@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Even - A super concise theme for Hugo</title>
-    <link>http://sormzhai.github.io/categories/</link>
-    <description>Recent content in Categories on Even - A super concise theme for Hugo</description>
+    <title>Categories on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
+    <link>http://stormzhai.github.io/categories/</link>
+    <description>Recent content in Categories on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-cn</language>
     
-	<atom:link href="http://sormzhai.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://stormzhai.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

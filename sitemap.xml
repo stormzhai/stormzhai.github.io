@@ -1,57 +1,43 @@
-<?xml-stylesheet type="text/xsl" href="http://sormzhai.github.io/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="http://stormzhai.github.io/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://sormzhai.github.io/post/</loc>
+    <loc>http://stormzhai.github.io/post/</loc>
     <lastmod>2019-11-11T18:09:17+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://sormzhai.github.io/posts/</loc>
-    <lastmod>2019-11-11T18:09:17+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://sormzhai.github.io/</loc>
+    <loc>http://stormzhai.github.io/tags/git-commond-list/</loc>
     <lastmod>2019-12-13T13:17:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://sormzhai.github.io/tags/git-commond-list/</loc>
+    <loc>http://stormzhai.github.io/post/2019-12-13t131735/</loc>
     <lastmod>2019-12-13T13:17:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://sormzhai.github.io/post/2019-12-13t131735/</loc>
+    <loc>http://stormzhai.github.io/</loc>
     <lastmod>2019-12-13T13:17:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://sormzhai.github.io/posts/2019-12-13t131735/</loc>
+    <loc>http://stormzhai.github.io/tags/</loc>
     <lastmod>2019-12-13T13:17:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://sormzhai.github.io/tags/</loc>
-    <lastmod>2019-12-13T13:17:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://sormzhai.github.io/categories/</loc>
+    <loc>http://stormzhai.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

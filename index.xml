@@ -1,32 +1,187 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Even - A super concise theme for Hugo</title>
-    <link>http://sormzhai.github.io/</link>
-    <description>Recent content on Even - A super concise theme for Hugo</description>
+    <title>stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
+    <link>http://stormzhai.github.io/</link>
+    <description>Recent content on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-cn</language>
     <lastBuildDate>Fri, 13 Dec 2019 13:17:35 +0800</lastBuildDate>
     
-	<atom:link href="http://sormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://stormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>git commond list</title>
-      <link>http://sormzhai.github.io/post/2019-12-13t131735/</link>
+      <link>http://stormzhai.github.io/post/2019-12-13t131735/</link>
       <pubDate>Fri, 13 Dec 2019 13:17:35 +0800</pubDate>
       
-      <guid>http://sormzhai.github.io/post/2019-12-13t131735/</guid>
-      <description>Git配置 1 2 3 4 5 6 7 8 9 git config --global user.name &amp;#34;storm&amp;#34; git config --global user.email &amp;#34;stormzhang.dev@gmail.com&amp;#34; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &amp;#34;vim&amp;#34; # 设置Editor使用vi</description>
-    </item>
-    
-    <item>
-      <title>git commond list</title>
-      <link>http://sormzhai.github.io/posts/2019-12-13t131735/</link>
-      <pubDate>Fri, 13 Dec 2019 13:17:35 +0800</pubDate>
+      <guid>http://stormzhai.github.io/post/2019-12-13t131735/</guid>
       
-      <guid>http://sormzhai.github.io/posts/2019-12-13t131735/</guid>
-      <description>Git配置 1 2 3 4 5 6 7 8 9 git config --global user.name &amp;#34;storm&amp;#34; git config --global user.email &amp;#34;stormzhang.dev@gmail.com&amp;#34; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &amp;#34;vim&amp;#34; # 设置Editor使用vi</description>
+        <description>
+
+&lt;h2 id=&#34;git配置&#34;&gt;Git配置&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;storm&amp;quot;
+git config --global user.email &amp;quot;stormzhang.dev@gmail.com&amp;quot;
+git config --global color.ui true
+git config --global alias.co checkout  # 别名
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.br branch
+git config --global core.editor &amp;quot;vim&amp;quot;  # 设置Editor使用vim
+git config --global core.quotepath false # 设置显示中文文件名
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用户的git配置文件~/.gitconfig&lt;/p&gt;
+
+&lt;h2 id=&#34;git常用命令&#34;&gt;Git常用命令&lt;/h2&gt;
+
+&lt;h4 id=&#34;查看-添加-提交-删除-找回-重置修改文件&#34;&gt;查看、添加、提交、删除、找回，重置修改文件&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git help &amp;lt;command&amp;gt;  # 显示command的help
+git show            # 显示某次提交的内容
+git show $id
+
+git co  -- &amp;lt;file&amp;gt;   # 抛弃工作区修改
+git co  .           # 抛弃工作区修改
+
+git add &amp;lt;file&amp;gt;      # 将工作文件修改提交到本地暂存区
+git add .           # 将所有修改过的工作文件提交暂存区
+
+git rm &amp;lt;file&amp;gt;       # 从版本库中删除文件
+git rm &amp;lt;file&amp;gt; --cached  # 从版本库中删除文件，但不删除文件
+
+git reset &amp;lt;file&amp;gt;    # 从暂存区恢复到工作文件
+git reset -- .      # 从暂存区恢复到工作文件
+git reset --hard    # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
+
+git ci &amp;lt;file&amp;gt;
+git ci .
+git ci -a           # 将git add, git rm和git ci等操作都合并在一起做
+git ci -am &amp;quot;some comments&amp;quot;
+git ci --amend      # 修改最后一次提交记录
+
+git revert &amp;lt;$id&amp;gt;    # 恢复某次提交的状态，恢复动作本身也创建了一次提交对象
+git revert HEAD     # 恢复最后一次提交的状态
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;查看文件diff&#34;&gt;查看文件diff&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git diff &amp;lt;file&amp;gt;     # 比较当前文件和暂存区文件差异
+git diff
+git diff &amp;lt;$id1&amp;gt; &amp;lt;$id2&amp;gt;   # 比较两次提交之间的差异
+git diff &amp;lt;branch1&amp;gt;..&amp;lt;branch2&amp;gt; # 在两个分支之间比较 
+git diff --staged   # 比较暂存区和版本库差异
+git diff --cached   # 比较暂存区和版本库差异
+git diff --stat     # 仅仅比较统计信息
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;查看提交记录&#34;&gt;查看提交记录&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git log
+git log &amp;lt;file&amp;gt;      # 查看该文件每次提交记录
+git log -p &amp;lt;file&amp;gt;   # 查看每次详细修改内容的diff
+git log -p -2       # 查看最近两次详细
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;tig&#34;&gt;tig&lt;/h4&gt;
+
+&lt;p&gt;Mac上可以使用tig代替diff和log，brew install tig&lt;/p&gt;
+
+&lt;h2 id=&#34;git-本地分支管理&#34;&gt;Git 本地分支管理&lt;/h2&gt;
+
+&lt;h4 id=&#34;查看-切换-创建和删除分支&#34;&gt;查看、切换、创建和删除分支&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git br -r           # 查看远程分支
+git br &amp;lt;new_branch&amp;gt; # 创建新的分支
+git br -v           # 查看各个分支最后提交信息
+git br --merged     # 查看已经被合并到当前分支的分支
+git br --no-merged  # 查看尚未被合并到当前分支的分支
+
+git co &amp;lt;branch&amp;gt;     # 切换到某个分支
+git co -b &amp;lt;new_branch&amp;gt; # 创建新的分支，并且切换过去
+git co -b &amp;lt;new_branch&amp;gt; &amp;lt;branch&amp;gt;  # 基于branch创建新的new_branch
+
+git co $id          # 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除
+git co $id -b &amp;lt;new_branch&amp;gt;  # 把某次历史提交记录checkout出来，创建成一个分支
+
+git br -d &amp;lt;branch&amp;gt;  # 删除某个分支
+git br -D &amp;lt;branch&amp;gt;  # 强制删除某个分支 (未被合并的分支被删除的时候需要强制)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;分支合并和rebase&#34;&gt;分支合并和rebase&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git merge &amp;lt;branch&amp;gt;               # 将branch分支合并到当前分支
+git merge origin/master --no-ff  # 不要Fast-Foward合并，这样可以生成merge提交
+
+git rebase master &amp;lt;branch&amp;gt;       # 将master rebase到branch，相当于：
+git co &amp;lt;branch&amp;gt; &amp;amp;&amp;amp; git rebase master &amp;amp;&amp;amp; git co master &amp;amp;&amp;amp; git merge &amp;lt;branch&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;git补丁管理-方便在多台机器上开发同步时用&#34;&gt;Git补丁管理(方便在多台机器上开发同步时用)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git diff &amp;gt; ../sync.patch         # 生成补丁
+git apply ../sync.patch          # 打补丁
+git apply --check ../sync.patch  # 测试补丁能否成功
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;git暂存管理&#34;&gt;Git暂存管理&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git stash                        # 暂存
+git stash list                   # 列所有stash
+git stash apply                  # 恢复暂存的内容
+git stash drop                   # 删除暂存区
+git stash clear
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;git远程分支管理&#34;&gt;Git远程分支管理&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git pull                         # 抓取远程仓库所有分支更新并合并到本地
+git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
+git fetch origin                 # 抓取远程仓库更新
+git merge origin/master          # 将远程主分支合并到本地当前分支
+git co --track origin/branch     # 跟踪某个远程分支创建相应的本地分支
+git co -b &amp;lt;local_branch&amp;gt; origin/&amp;lt;remote_branch&amp;gt;  # 基于远程分支创建本地分支，功能同上
+
+git push                         # push所有分支
+git push origin master           # 将本地主分支推到远程主分支
+git push -u origin master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)
+git push origin &amp;lt;local_branch&amp;gt;   # 创建远程分支， origin是远程仓库名
+git push origin &amp;lt;local_branch&amp;gt;:&amp;lt;remote_branch&amp;gt;  # 创建远程分支
+git push origin :&amp;lt;remote_branch&amp;gt;  #先删除本地分支(git br -d &amp;lt;branch&amp;gt;)，然后再push删除远程分支
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;git远程仓库管理&#34;&gt;Git远程仓库管理&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git remote -v                    # 查看远程服务器地址和仓库名称
+git remote show origin           # 查看远程服务器仓库状态
+git remote add origin git@github:stormzhang/demo.git         # 添加远程仓库地址
+git remote set-url origin git@github.com:stormzhang/demo.git # 设置远程仓库地址(用于修改远程仓库地址
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;创建远程仓库&#34;&gt;创建远程仓库&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone --bare robbin_site robbin_site.git  # 用带版本的项目创建纯版本仓库
+scp -r my_project.git git@git.csdn.net:~      # 将纯仓库上传到服务器上
+
+mkdir robbin_site.git &amp;amp;&amp;amp; cd robbin_site.git &amp;amp;&amp;amp; git --bare init # 在服务器创建纯仓库
+git remote add origin git@github.com:robbin/robbin_site.git    # 设置远程仓库地址
+git push -u origin master                                      # 客户端首次提交
+git push -u origin develop  # 首次将本地develop分支提交到远程develop分支，并且track
+
+git remote set-head origin master   # 设置远程仓库的HEAD指向master分支
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以命令设置跟踪远程库和本地库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch --set-upstream master origin/master
+git branch --set-upstream develop origin/develop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Via &lt;a href=&#34;http://robbinfan.com/blog/34/git-common-command&#34;&gt;robbinfan&lt;/a&gt;&lt;/p&gt;
+</description>
+      
     </item>
     
   </channel>
