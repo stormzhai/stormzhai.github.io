@@ -6,10 +6,28 @@
     <description>Recent content on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 13 Dec 2019 13:17:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 16:54:00 +0800</lastBuildDate>
     
         <atom:link href="http://stormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>http://stormzhai.github.io/about/</link>
+      <pubDate>Mon, 16 Dec 2019 16:54:00 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/about/</guid>
+      
+        <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;打杂。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对 大数据、devops、微服务有一定研究。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最近在学习 kubernetes，istio 等云原生相关技术。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>git常用命令</title>
