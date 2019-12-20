@@ -12,6 +12,24 @@
     
     
     <item>
+      <title>curl基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Dec 2019 09:17:27 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这</description>
+    </item>
+    
+    <item>
+      <title>tmux基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 19 Dec 2019 20:02:11 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p</description>
+    </item>
+    
+    <item>
       <title>git常用命令</title>
       <link>http://stormzhai.github.io/post/2019-12-13t131735/</link>
       <pubDate>Fri, 13 Dec 2019 13:17:35 +0800</pubDate>

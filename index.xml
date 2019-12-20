@@ -6,10 +6,310 @@
     <description>Recent content on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 13 Dec 2019 13:17:35 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 20 Dec 2019 09:17:27 +0800</lastBuildDate>
     
         <atom:link href="http://stormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>curl基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Dec 2019 09:17:27 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      
+        <description>
+
+&lt;p&gt;我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这里就来介绍一个好用的工具&amp;ndash;curl。&lt;/p&gt;
+
+&lt;h2 id=&#34;curl&#34;&gt;curl&lt;/h2&gt;
+
+&lt;p&gt;curl是一个向服务器传输数据的工具，它支持http、https、ftp、ftps、scp、sftp、tftp、telnet等协议，这里只针对http进行讲解一些常用的用法，具体安装请自行搜索。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装运行&#34;&gt;安装运行&lt;/h3&gt;
+
+&lt;p&gt;macOS 上使用 Homebrew 安装即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;打开百度&#34;&gt;打开百度&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着你就会看到百度的页面源代码输出。&lt;/p&gt;
+
+&lt;p&gt;如果要把这个网页保存下来，可以这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com &amp;gt; /tmp/baidu.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会看到一条进度条，然后源码就被重定向到了/tmp/baidu.html。&lt;/p&gt;
+
+&lt;p&gt;或者：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -o /tmp/baidu.html http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;get请求&#34;&gt;GET请求&lt;/h2&gt;
+
+&lt;p&gt;默认直接请求一个url就是发出一个get请求，参数的话直接拼接在url里就好了，如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com/s?wd=curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上述请求会上百度发起一条查询请求，参数是wd=url&lt;/p&gt;
+
+&lt;h2 id=&#34;post请求&#34;&gt;POST请求&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -d &amp;quot;name=test&amp;amp;page=1&amp;quot; http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;-d&lt;/strong&gt; 参数指定表单以POST的形式执行。&lt;/p&gt;
+
+&lt;h2 id=&#34;只展示header&#34;&gt;只展示Header&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -I  http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到只返回一些header信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.1 200 OK
+Date: Fri, 07 Nov 2014 09:48:58 GMT
+Content-Type: text/html; charset=utf-8
+Connection: Keep-Alive
+Vary: Accept-Encoding
+Set-Cookie: BAIDUID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BAIDUPSID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BDSVRTM=0; path=/
+Set-Cookie: BD_HOME=0; path=/
+Set-Cookie: H_PS_PSSID=9725_9165_1465_7800_9452_9498_6504_9509_6018_9700_9757_9531_9478_7798_9453_9793_9024; path=/; domain=.baidu.com
+P3P: CP=&amp;quot; OTI DSP COR IVA OUR IND COM &amp;quot;
+Cache-Control: private
+Cxy_all: baidu+3057b288b211c770a1463cc8519b62a8
+Expires: Fri, 07 Nov 2014 09:48:17 GMT
+X-Powered-By: HPHP
+Server: BWS/1.1
+BDPAGETYPE: 1
+BDQID: 0xfa28eff900012706
+BDUSERID: 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;显示通信过程&#34;&gt;显示通信过程&lt;/h2&gt;
+
+&lt;p&gt;-v参数可以显示一次http通信的整个过程，包括端口连接和http request头信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -v www.baidu.com
+
+* Adding handle: conn: 0x7ffe4b003a00
+* Adding handle: send: 0
+* Adding handle: recv: 0
+* Curl_addHandleToPipeline: length: 1
+* - Conn 0 (0x7ffe4b003a00) send_pipe: 1, recv_pipe: 0
+* About to connect() to www.baidu.com port 80 (#0)
+*   Trying 61.135.169.125...
+* Connected to www.baidu.com (61.135.169.125) port 80 (#0)
+&amp;gt; GET / HTTP/1.1
+&amp;gt; User-Agent: curl/7.30.0
+&amp;gt; Host: www.baidu.com
+&amp;gt; Accept: */*
+&amp;gt;
+&amp;lt; HTTP/1.1 200 OK
+&amp;lt; Date: Fri, 07 Nov 2014 09:49:49 GMT
+&amp;lt; Content-Type: text/html; charset=utf-8
+&amp;lt; Transfer-Encoding: chunked
+&amp;lt; Connection: Keep-Alive
+&amp;lt; Vary: Accept-Encoding
+&amp;lt; Set-Cookie: BAIDUID=062E02D23FBB651CF8455B699DF02B64:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&amp;lt; Set-Cookie: BAIDUPSID=062E02D23FBB651CF8455B699DF02B64; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&amp;lt; Set-Cookie: BDSVRTM=0; path=/
+&amp;lt; Set-Cookie: BD_HOME=0; path=/
+&amp;lt; Set-Cookie: H_PS_PSSID=7744_1429_7801_9583_9499_6506_6018_9769_9699_9757_9532_9477_7799_9453_9716_9023; path=/; domain=.baidu.com
+&amp;lt; P3P: CP=&amp;quot; OTI DSP COR IVA OUR IND COM &amp;quot;
+&amp;lt; Cache-Control: private
+&amp;lt; Cxy_all: baidu+7dcb6b3c03d32c334d42f311919a14d6
+&amp;lt; Expires: Fri, 07 Nov 2014 09:49:20 GMT
+&amp;lt; X-Powered-By: HPHP
+* Server BWS/1.1 is not blacklisted
+&amp;lt; Server: BWS/1.1
+&amp;lt; BDPAGETYPE: 1
+&amp;lt; BDQID: 0xadb706860000088f
+&amp;lt; BDUSERID: 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你觉得上面的信息还不够，那么下面的命令可以查看更详细的通信过程。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --trace output.txt www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --trace-ascii output.txt www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行后，请打开output.txt文件查看。&lt;/p&gt;
+
+&lt;h2 id=&#34;http方法&#34;&gt;HTTP方法&lt;/h2&gt;
+
+&lt;p&gt;curl默认的HTTP方法是GET，使用-X参数可以支持其他动词。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -X POST www.example.com
+
+curl -X DELETE www.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;referer字段&#34;&gt;Referer字段&lt;/h2&gt;
+
+&lt;p&gt;有时你需要在http request头信息中，提供一个referer字段，表示你是从哪里跳转过来的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --referer http://www.example.com http://www.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;user-agent字段&#34;&gt;User Agent字段&lt;/h2&gt;
+
+&lt;p&gt;这个字段是用来表示客户端的设备信息。服务器有时会根据这个字段，针对不同设备，返回不同格式的网页，比如手机版和桌面版。&lt;/p&gt;
+
+&lt;p&gt;iPhone4的User Agent是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;curl可以这样模拟：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --user-agent &amp;quot;[User Agent]&amp;quot; [URL]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;增加头信息&#34;&gt;增加头信息&lt;/h2&gt;
+
+&lt;p&gt;有时需要在http request之中，自行增加一个头信息。&amp;ndash;header参数就可以起到这个作用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --header &amp;quot;Content-Type:application/json&amp;quot; http://example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Via &lt;a href=&#34;https://stormzhang.com&#34;&gt;stormzhang&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>tmux基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 19 Dec 2019 20:02:11 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;安装运行&#34;&gt;安装运行&lt;/h3&gt;
+
+&lt;p&gt;macOS 上使用 Homebrew 安装即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;快捷键&#34;&gt;快捷键&lt;/h3&gt;
+
+&lt;p&gt;一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（pane）快捷键列表，大家可以依次尝试下:&lt;/p&gt;
+
+&lt;h3 id=&#34;窗格操作&#34;&gt;窗格操作&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;% 左右平分出两个窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;rdquo; 上下平分出两个窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;x 关闭当前窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;{ 当前窗格前移&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;} 当前窗格后移&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;; 选择上次使用的窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;o 选择下一个窗格，也可以使用上下左右方向键来选择&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;space 切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;z 最大化当前窗格，再次执行可恢复原来大小&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;q 显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;窗口操作&#34;&gt;窗口操作&lt;/h3&gt;
+
+&lt;p&gt;tmux 除了窗格以外，还有窗口（window） 的概念。依次使用以下快捷键来熟悉 tmux 的窗口操作：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;c 新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;p 切换至上一窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;n 切换至下一窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;w 窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;amp; 关闭当前窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;, 重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;0 切换至 0 号窗口，使用其他数字 id 切换至对应窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;f 根据窗口名搜索选择窗口，可模糊匹配&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;会话操作&#34;&gt;会话操作&lt;/h3&gt;
+
+&lt;p&gt;如果运行了多次 tmux 命令则会开启多个 tmux 会话（session）。在 tmux 会话中，使用前缀快捷键 ⌃b 配合以下快捷键可操作会话：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;$ 重命名当前会话&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;s 选择会话列表&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;d detach 当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在 shell 主进程下运行以下命令可以操作 tmux 会话：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tmux new -s foo # 新建名称为 foo 的会话
+tmux ls # 列出所有 tmux 会话
+tmux a # 恢复至上一次的会话
+tmux a -t foo # 恢复名称为 foo 的会话，会话默认名称为数字
+tmux kill-session -t foo # 删除名称为 foo 的会话
+tmux kill-server # 删除所有的会话
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;除以上提到的快捷键以外，tmux 还有许多其他的快捷键和命令，使用前缀快捷键 ⌃b 加 ? 可以查看所有的快捷键列表，该列表视图为 tmux copy 模式，该模式下可使用以下快捷键（无需加 ⌃b 前缀）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;⌃v 下一页
+Meta v 上一页 （tmux 快捷键为 Emacs 风格，这里的 Meta 键可用 Esc 模拟）
+⌃s 向前搜索
+q 退出 copy 模式
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Via &lt;a href=&#34;https://www.cnblogs.com/kaiye/p/6275207.html&#34;&gt;猫哥_kaiye&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://stormzhai.github.io/about/</link>
+      <pubDate>Mon, 16 Dec 2019 16:54:00 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/about/</guid>
+      
+        <description>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;打杂。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对 大数据、devops、微服务有一定研究。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最近在学习 kubernetes，istio 等云原生相关技术。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>git常用命令</title>

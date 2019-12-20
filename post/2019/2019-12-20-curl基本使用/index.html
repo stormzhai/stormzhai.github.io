@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>git常用命令 - stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
+  <title>curl基本使用 - stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="stormzhai" />
-  <meta name="description" content="Git配置 git config --global user.name &amp;quot;storm&amp;quot; git config --global user.email &amp;quot;stormzhang.dev@gmail.com&amp;quot; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &amp;quot;vim&amp;quot; # 设置Editor使用vim git config --global core.quotepath false # 设置" />
+  <meta name="description" content="我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这" />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.59.1" />
 
 
-<link rel="canonical" href="http://stormzhai.github.io/post/2019-12-13t131735/" />
+<link rel="canonical" href="http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" />
 
 
 
@@ -59,26 +59,26 @@
 
 
 
-<meta property="og:title" content="git常用命令" />
-<meta property="og:description" content="Git配置 git config --global user.name &quot;storm&quot; git config --global user.email &quot;stormzhang.dev@gmail.com&quot; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &quot;vim&quot; # 设置Editor使用vim git config --global core.quotepath false # 设置" />
+<meta property="og:title" content="curl基本使用" />
+<meta property="og:description" content="我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://stormzhai.github.io/post/2019-12-13t131735/" />
-<meta property="article:published_time" content="2019-12-13T13:17:35+08:00" />
-<meta property="article:modified_time" content="2019-12-13T13:17:35+08:00" />
-<meta itemprop="name" content="git常用命令">
-<meta itemprop="description" content="Git配置 git config --global user.name &quot;storm&quot; git config --global user.email &quot;stormzhang.dev@gmail.com&quot; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &quot;vim&quot; # 设置Editor使用vim git config --global core.quotepath false # 设置">
+<meta property="og:url" content="http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" />
+<meta property="article:published_time" content="2019-12-20T09:17:27+08:00" />
+<meta property="article:modified_time" content="2019-12-20T09:17:27+08:00" />
+<meta itemprop="name" content="curl基本使用">
+<meta itemprop="description" content="我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这">
 
 
-<meta itemprop="datePublished" content="2019-12-13T13:17:35&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-13T13:17:35&#43;08:00" />
-<meta itemprop="wordCount" content="1631">
+<meta itemprop="datePublished" content="2019-12-20T09:17:27&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-20T09:17:27&#43;08:00" />
+<meta itemprop="wordCount" content="1083">
 
 
 
-<meta itemprop="keywords" content="git," />
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="git常用命令"/>
-<meta name="twitter:description" content="Git配置 git config --global user.name &quot;storm&quot; git config --global user.email &quot;stormzhang.dev@gmail.com&quot; git config --global color.ui true git config --global alias.co checkout # 别名 git config --global alias.ci commit git config --global alias.st status git config --global alias.br branch git config --global core.editor &quot;vim&quot; # 设置Editor使用vim git config --global core.quotepath false # 设置"/>
+<meta name="twitter:title" content="curl基本使用"/>
+<meta name="twitter:description" content="我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -298,11 +298,11 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">git常用命令</h1>
+      <h1 class="post-title">curl基本使用</h1>
       
       <div class="post-meta">
-        <time datetime="2019-12-13" class="post-time">
-          2019-12-13
+        <time datetime="2019-12-20" class="post-time">
+          2019-12-20
         </time>
         
         
@@ -324,30 +324,19 @@
 <ul>
 <li>
 <ul>
-<li><a href="#git配置">Git配置</a></li>
-<li><a href="#git常用命令">Git常用命令</a>
+<li><a href="#curl">curl</a>
 <ul>
-<li>
-<ul>
-<li><a href="#查看-添加-提交-删除-找回-重置修改文件">查看、添加、提交、删除、找回，重置修改文件</a></li>
-<li><a href="#查看文件diff">查看文件diff</a></li>
-<li><a href="#查看提交记录">查看提交记录</a></li>
-<li><a href="#tig">tig</a></li>
+<li><a href="#安装运行">安装运行</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#git-本地分支管理">Git 本地分支管理</a>
-<ul>
-<li>
-<ul>
-<li><a href="#查看-切换-创建和删除分支">查看、切换、创建和删除分支</a></li>
-<li><a href="#分支合并和rebase">分支合并和rebase</a></li>
-<li><a href="#git补丁管理-方便在多台机器上开发同步时用">Git补丁管理(方便在多台机器上开发同步时用)</a></li>
-<li><a href="#git暂存管理">Git暂存管理</a></li>
-<li><a href="#git远程分支管理">Git远程分支管理</a></li>
-<li><a href="#git远程仓库管理">Git远程仓库管理</a></li>
-<li><a href="#创建远程仓库">创建远程仓库</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#打开百度">打开百度</a></li>
+<li><a href="#get请求">GET请求</a></li>
+<li><a href="#post请求">POST请求</a></li>
+<li><a href="#只展示header">只展示Header</a></li>
+<li><a href="#显示通信过程">显示通信过程</a></li>
+<li><a href="#http方法">HTTP方法</a></li>
+<li><a href="#referer字段">Referer字段</a></li>
+<li><a href="#user-agent字段">User Agent字段</a></li>
+<li><a href="#增加头信息">增加头信息</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -358,166 +347,174 @@
     <div class="post-content">
       
 
-<h2 id="git配置">Git配置</h2>
+<p>我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这里就来介绍一个好用的工具&ndash;curl。</p>
 
-<pre><code>git config --global user.name &quot;storm&quot;
-git config --global user.email &quot;stormzhang.dev@gmail.com&quot;
-git config --global color.ui true
-git config --global alias.co checkout  # 别名
-git config --global alias.ci commit
-git config --global alias.st status
-git config --global alias.br branch
-git config --global core.editor &quot;vim&quot;  # 设置Editor使用vim
-git config --global core.quotepath false # 设置显示中文文件名
+<h2 id="curl">curl</h2>
+
+<p>curl是一个向服务器传输数据的工具，它支持http、https、ftp、ftps、scp、sftp、tftp、telnet等协议，这里只针对http进行讲解一些常用的用法，具体安装请自行搜索。</p>
+
+<h3 id="安装运行">安装运行</h3>
+
+<p>macOS 上使用 Homebrew 安装即可:</p>
+
+<pre><code>brew install curl
 </code></pre>
 
-<p>用户的git配置文件~/.gitconfig</p>
+<h2 id="打开百度">打开百度</h2>
 
-<h2 id="git常用命令">Git常用命令</h2>
-
-<h4 id="查看-添加-提交-删除-找回-重置修改文件">查看、添加、提交、删除、找回，重置修改文件</h4>
-
-<pre><code>git help &lt;command&gt;  # 显示command的help
-git show            # 显示某次提交的内容
-git show $id
-
-git co  -- &lt;file&gt;   # 抛弃工作区修改
-git co  .           # 抛弃工作区修改
-
-git add &lt;file&gt;      # 将工作文件修改提交到本地暂存区
-git add .           # 将所有修改过的工作文件提交暂存区
-
-git rm &lt;file&gt;       # 从版本库中删除文件
-git rm &lt;file&gt; --cached  # 从版本库中删除文件，但不删除文件
-
-git reset &lt;file&gt;    # 从暂存区恢复到工作文件
-git reset -- .      # 从暂存区恢复到工作文件
-git reset --hard    # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
-
-git ci &lt;file&gt;
-git ci .
-git ci -a           # 将git add, git rm和git ci等操作都合并在一起做
-git ci -am &quot;some comments&quot;
-git ci --amend      # 修改最后一次提交记录
-
-git revert &lt;$id&gt;    # 恢复某次提交的状态，恢复动作本身也创建了一次提交对象
-git revert HEAD     # 恢复最后一次提交的状态
+<pre><code>curl http://www.baidu.com
 </code></pre>
 
-<h4 id="查看文件diff">查看文件diff</h4>
+<p>接着你就会看到百度的页面源代码输出。</p>
 
-<pre><code>git diff &lt;file&gt;     # 比较当前文件和暂存区文件差异
-git diff
-git diff &lt;$id1&gt; &lt;$id2&gt;   # 比较两次提交之间的差异
-git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较 
-git diff --staged   # 比较暂存区和版本库差异
-git diff --cached   # 比较暂存区和版本库差异
-git diff --stat     # 仅仅比较统计信息
+<p>如果要把这个网页保存下来，可以这样：</p>
+
+<pre><code>curl http://www.baidu.com &gt; /tmp/baidu.html
 </code></pre>
 
-<h4 id="查看提交记录">查看提交记录</h4>
+<p>你会看到一条进度条，然后源码就被重定向到了/tmp/baidu.html。</p>
 
-<pre><code>git log
-git log &lt;file&gt;      # 查看该文件每次提交记录
-git log -p &lt;file&gt;   # 查看每次详细修改内容的diff
-git log -p -2       # 查看最近两次详细
+<p>或者：</p>
+
+<pre><code>curl -o /tmp/baidu.html http://www.baidu.com
 </code></pre>
 
-<h4 id="tig">tig</h4>
+<h2 id="get请求">GET请求</h2>
 
-<p>Mac上可以使用tig代替diff和log，brew install tig</p>
+<p>默认直接请求一个url就是发出一个get请求，参数的话直接拼接在url里就好了，如</p>
 
-<h2 id="git-本地分支管理">Git 本地分支管理</h2>
-
-<h4 id="查看-切换-创建和删除分支">查看、切换、创建和删除分支</h4>
-
-<pre><code>git br -r           # 查看远程分支
-git br &lt;new_branch&gt; # 创建新的分支
-git br -v           # 查看各个分支最后提交信息
-git br --merged     # 查看已经被合并到当前分支的分支
-git br --no-merged  # 查看尚未被合并到当前分支的分支
-
-git co &lt;branch&gt;     # 切换到某个分支
-git co -b &lt;new_branch&gt; # 创建新的分支，并且切换过去
-git co -b &lt;new_branch&gt; &lt;branch&gt;  # 基于branch创建新的new_branch
-
-git co $id          # 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除
-git co $id -b &lt;new_branch&gt;  # 把某次历史提交记录checkout出来，创建成一个分支
-
-git br -d &lt;branch&gt;  # 删除某个分支
-git br -D &lt;branch&gt;  # 强制删除某个分支 (未被合并的分支被删除的时候需要强制)
+<pre><code>curl http://www.baidu.com/s?wd=curl
 </code></pre>
 
-<h4 id="分支合并和rebase">分支合并和rebase</h4>
+<p>上述请求会上百度发起一条查询请求，参数是wd=url</p>
 
-<pre><code>git merge &lt;branch&gt;               # 将branch分支合并到当前分支
-git merge origin/master --no-ff  # 不要Fast-Foward合并，这样可以生成merge提交
+<h2 id="post请求">POST请求</h2>
 
-git rebase master &lt;branch&gt;       # 将master rebase到branch，相当于：
-git co &lt;branch&gt; &amp;&amp; git rebase master &amp;&amp; git co master &amp;&amp; git merge &lt;branch&gt;
+<pre><code>curl -d &quot;name=test&amp;page=1&quot; http://www.baidu.com
 </code></pre>
 
-<h4 id="git补丁管理-方便在多台机器上开发同步时用">Git补丁管理(方便在多台机器上开发同步时用)</h4>
+<p><strong>-d</strong> 参数指定表单以POST的形式执行。</p>
 
-<pre><code>git diff &gt; ../sync.patch         # 生成补丁
-git apply ../sync.patch          # 打补丁
-git apply --check ../sync.patch  # 测试补丁能否成功
+<h2 id="只展示header">只展示Header</h2>
+
+<pre><code>curl -I  http://www.baidu.com
 </code></pre>
 
-<h4 id="git暂存管理">Git暂存管理</h4>
+<p>可以看到只返回一些header信息</p>
 
-<pre><code>git stash                        # 暂存
-git stash list                   # 列所有stash
-git stash apply                  # 恢复暂存的内容
-git stash drop                   # 删除暂存区
-git stash clear
+<pre><code>HTTP/1.1 200 OK
+Date: Fri, 07 Nov 2014 09:48:58 GMT
+Content-Type: text/html; charset=utf-8
+Connection: Keep-Alive
+Vary: Accept-Encoding
+Set-Cookie: BAIDUID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BAIDUPSID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BDSVRTM=0; path=/
+Set-Cookie: BD_HOME=0; path=/
+Set-Cookie: H_PS_PSSID=9725_9165_1465_7800_9452_9498_6504_9509_6018_9700_9757_9531_9478_7798_9453_9793_9024; path=/; domain=.baidu.com
+P3P: CP=&quot; OTI DSP COR IVA OUR IND COM &quot;
+Cache-Control: private
+Cxy_all: baidu+3057b288b211c770a1463cc8519b62a8
+Expires: Fri, 07 Nov 2014 09:48:17 GMT
+X-Powered-By: HPHP
+Server: BWS/1.1
+BDPAGETYPE: 1
+BDQID: 0xfa28eff900012706
+BDUSERID: 0
 </code></pre>
 
-<h4 id="git远程分支管理">Git远程分支管理</h4>
+<h2 id="显示通信过程">显示通信过程</h2>
 
-<pre><code>git pull                         # 抓取远程仓库所有分支更新并合并到本地
-git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
-git fetch origin                 # 抓取远程仓库更新
-git merge origin/master          # 将远程主分支合并到本地当前分支
-git co --track origin/branch     # 跟踪某个远程分支创建相应的本地分支
-git co -b &lt;local_branch&gt; origin/&lt;remote_branch&gt;  # 基于远程分支创建本地分支，功能同上
+<p>-v参数可以显示一次http通信的整个过程，包括端口连接和http request头信息</p>
 
-git push                         # push所有分支
-git push origin master           # 将本地主分支推到远程主分支
-git push -u origin master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)
-git push origin &lt;local_branch&gt;   # 创建远程分支， origin是远程仓库名
-git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;  # 创建远程分支
-git push origin :&lt;remote_branch&gt;  #先删除本地分支(git br -d &lt;branch&gt;)，然后再push删除远程分支
+<pre><code>curl -v www.baidu.com
+
+* Adding handle: conn: 0x7ffe4b003a00
+* Adding handle: send: 0
+* Adding handle: recv: 0
+* Curl_addHandleToPipeline: length: 1
+* - Conn 0 (0x7ffe4b003a00) send_pipe: 1, recv_pipe: 0
+* About to connect() to www.baidu.com port 80 (#0)
+*   Trying 61.135.169.125...
+* Connected to www.baidu.com (61.135.169.125) port 80 (#0)
+&gt; GET / HTTP/1.1
+&gt; User-Agent: curl/7.30.0
+&gt; Host: www.baidu.com
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; Date: Fri, 07 Nov 2014 09:49:49 GMT
+&lt; Content-Type: text/html; charset=utf-8
+&lt; Transfer-Encoding: chunked
+&lt; Connection: Keep-Alive
+&lt; Vary: Accept-Encoding
+&lt; Set-Cookie: BAIDUID=062E02D23FBB651CF8455B699DF02B64:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&lt; Set-Cookie: BAIDUPSID=062E02D23FBB651CF8455B699DF02B64; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&lt; Set-Cookie: BDSVRTM=0; path=/
+&lt; Set-Cookie: BD_HOME=0; path=/
+&lt; Set-Cookie: H_PS_PSSID=7744_1429_7801_9583_9499_6506_6018_9769_9699_9757_9532_9477_7799_9453_9716_9023; path=/; domain=.baidu.com
+&lt; P3P: CP=&quot; OTI DSP COR IVA OUR IND COM &quot;
+&lt; Cache-Control: private
+&lt; Cxy_all: baidu+7dcb6b3c03d32c334d42f311919a14d6
+&lt; Expires: Fri, 07 Nov 2014 09:49:20 GMT
+&lt; X-Powered-By: HPHP
+* Server BWS/1.1 is not blacklisted
+&lt; Server: BWS/1.1
+&lt; BDPAGETYPE: 1
+&lt; BDQID: 0xadb706860000088f
+&lt; BDUSERID: 0
 </code></pre>
 
-<h4 id="git远程仓库管理">Git远程仓库管理</h4>
+<p>如果你觉得上面的信息还不够，那么下面的命令可以查看更详细的通信过程。</p>
 
-<pre><code>git remote -v                    # 查看远程服务器地址和仓库名称
-git remote show origin           # 查看远程服务器仓库状态
-git remote add origin git@github:stormzhang/demo.git         # 添加远程仓库地址
-git remote set-url origin git@github.com:stormzhang/demo.git # 设置远程仓库地址(用于修改远程仓库地址
+<pre><code>curl --trace output.txt www.baidu.com
 </code></pre>
 
-<h4 id="创建远程仓库">创建远程仓库</h4>
+<p>或者</p>
 
-<pre><code>git clone --bare robbin_site robbin_site.git  # 用带版本的项目创建纯版本仓库
-scp -r my_project.git git@git.csdn.net:~      # 将纯仓库上传到服务器上
-
-mkdir robbin_site.git &amp;&amp; cd robbin_site.git &amp;&amp; git --bare init # 在服务器创建纯仓库
-git remote add origin git@github.com:robbin/robbin_site.git    # 设置远程仓库地址
-git push -u origin master                                      # 客户端首次提交
-git push -u origin develop  # 首次将本地develop分支提交到远程develop分支，并且track
-
-git remote set-head origin master   # 设置远程仓库的HEAD指向master分支
+<pre><code>curl --trace-ascii output.txt www.baidu.com
 </code></pre>
 
-<p>也可以命令设置跟踪远程库和本地库</p>
+<p>运行后，请打开output.txt文件查看。</p>
 
-<pre><code>git branch --set-upstream master origin/master
-git branch --set-upstream develop origin/develop
+<h2 id="http方法">HTTP方法</h2>
+
+<p>curl默认的HTTP方法是GET，使用-X参数可以支持其他动词。</p>
+
+<pre><code>curl -X POST www.example.com
+
+curl -X DELETE www.example.com
 </code></pre>
 
-<p>Via <a href="http://robbinfan.com/blog/34/git-common-command">robbinfan</a></p>
+<h2 id="referer字段">Referer字段</h2>
+
+<p>有时你需要在http request头信息中，提供一个referer字段，表示你是从哪里跳转过来的。</p>
+
+<pre><code>curl --referer http://www.example.com http://www.example.com
+</code></pre>
+
+<h2 id="user-agent字段">User Agent字段</h2>
+
+<p>这个字段是用来表示客户端的设备信息。服务器有时会根据这个字段，针对不同设备，返回不同格式的网页，比如手机版和桌面版。</p>
+
+<p>iPhone4的User Agent是</p>
+
+<pre><code>Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7
+</code></pre>
+
+<p>curl可以这样模拟：</p>
+
+<pre><code>curl --user-agent &quot;[User Agent]&quot; [URL]
+</code></pre>
+
+<h2 id="增加头信息">增加头信息</h2>
+
+<p>有时需要在http request之中，自行增加一个头信息。&ndash;header参数就可以起到这个作用。</p>
+
+<pre><code>curl --header &quot;Content-Type:application/json&quot; http://example.com
+</code></pre>
+
+<p>Via <a href="https://stormzhang.com">stormzhang</a></p>
 
     </div>
 
@@ -531,7 +528,7 @@ git branch --set-upstream develop origin/develop
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-      2019-12-13
+      2019-12-20
       
     </span>
   </p>
@@ -547,28 +544,25 @@ git branch --set-upstream develop origin/develop
     
 
     <footer class="post-footer">
-      <div class="post-tags">
-          <a href="http://stormzhai.github.io/tags/git/">git</a>
-          
-        </div>
+      
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        
+          <a class="next" href="/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+            <span class="next-text nav-default">tmux基本使用</span>
+            <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
 </svg>
 
             </i>
-            <span class="prev-text nav-default">tmux基本使用</span>
-            <span class="prev-text nav-mobile">Prev</span>
           </a>
-        
       </nav>
     </footer>
   </article>
