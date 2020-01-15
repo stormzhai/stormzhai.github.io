@@ -29,15 +29,17 @@
 
 &lt;p&gt;配置iTerm2的触发器（点击菜单的Profiles，选择某个profile之后然后继续选择advanced → triggers，添加triggers），配置器触发如下：&lt;/p&gt;
 
-&lt;p&gt;Regular expression: rz waiting to receive.**B0100
+&lt;pre&gt;&lt;code&gt;Regular expression: rz waiting to receive.\*\*B0100
 Action: Run Silent Coprocess
 Parameters: /usr/local/bin/iterm2-send-zmodem.sh
-Instant: checked&lt;/p&gt;
+Instant: checked
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Regular expression: **B00000000000000
+&lt;pre&gt;&lt;code&gt;Regular expression: \*\*B00000000000000
 Action: Run Silent Coprocess
 Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
-Instant: checked&lt;/p&gt;
+Instant: checked
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://stormzhai.github.io/images/iTerm2-triggers-for-ZMODEM.png&#34; alt=&#34;图片说明&#34; /&gt;&lt;/p&gt;
 </description>
