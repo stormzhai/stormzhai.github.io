@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>mac iterm2 rzsz 配置</title>
+      <link>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 14 Jan 2020 20:02:43 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装 brew install laggardkernel/tap/iterm2-zmodem 配置 配置iTerm2的触发器（点击菜单的Profiles，选择某个profile之后然后继续选择advanced → triggers</description>
+    </item>
+    
+    <item>
       <title>curl基本使用</title>
       <link>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 20 Dec 2019 09:17:27 +0800</pubDate>

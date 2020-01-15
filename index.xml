@@ -6,10 +6,41 @@
     <description>Recent content on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 20 Dec 2019 09:17:27 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jan 2020 20:02:43 +0800</lastBuildDate>
     
         <atom:link href="http://stormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>mac iterm2 rzsz 配置</title>
+      <link>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 14 Jan 2020 20:02:43 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install laggardkernel/tap/iterm2-zmodem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+
+&lt;p&gt;配置iTerm2的触发器（点击菜单的Profiles，选择某个profile之后然后继续选择advanced → triggers，添加triggers），配置器触发如下：&lt;/p&gt;
+
+&lt;p&gt;Regular expression: rz waiting to receive.**B0100
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-send-zmodem.sh
+Instant: checked&lt;/p&gt;
+
+&lt;p&gt;Regular expression: **B00000000000000
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
+Instant: checked&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>curl基本使用</title>
