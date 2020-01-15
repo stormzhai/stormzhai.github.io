@@ -38,6 +38,8 @@ Instant: checked&lt;/p&gt;
 Action: Run Silent Coprocess
 Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
 Instant: checked&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://stormzhai.github.io/images/iTerm2-triggers-for-ZMODEM.png&#34; alt=&#34;图片说明&#34; /&gt;&lt;/p&gt;
 </description>
       
     </item>
