@@ -12,6 +12,42 @@
     
     
     <item>
+      <title>MongoDB数据库［李兴华老师教学学习笔记］</title>
+      <link>http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 30 Nov 2021 12:33:18 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>1、MongoDB简介（了解） MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了</description>
+    </item>
+    
+    <item>
+      <title>mac iterm2 rzsz 配置</title>
+      <link>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 14 Jan 2020 20:02:43 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装 brew install laggardkernel/tap/iterm2-zmodem 配置 配置iTerm2的触发器（点击菜单的Profiles，选择某个profile之后然后继续选择advanced → triggers</description>
+    </item>
+    
+    <item>
+      <title>curl基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Dec 2019 09:17:27 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这</description>
+    </item>
+    
+    <item>
+      <title>tmux基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 19 Dec 2019 20:02:11 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      <description>安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p</description>
+    </item>
+    
+    <item>
       <title>git常用命令</title>
       <link>http://stormzhai.github.io/post/2019-12-13t131735/</link>
       <pubDate>Fri, 13 Dec 2019 13:17:35 +0800</pubDate>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>404 page not found - stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
+  <title>tmux基本使用 - stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="stormzhai" />
-  <meta name="description" content="Hugo theme jane example site." />
+  <meta name="description" content="安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p" />
+
   <meta name="keywords" content="Hugo, theme, jane" />
 
 
@@ -34,7 +35,7 @@
 <meta name="generator" content="Hugo 0.59.1" />
 
 
-<link rel="canonical" href="http://stormzhai.github.io/404.html" />
+<link rel="canonical" href="http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" />
 
 
 
@@ -58,17 +59,26 @@
 
 
 
-<meta property="og:title" content="404 Page not found" />
-<meta property="og:description" content="Hugo theme jane example site." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://stormzhai.github.io/404.html" />
+<meta property="og:title" content="tmux基本使用" />
+<meta property="og:description" content="安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" />
+<meta property="article:published_time" content="2019-12-19T20:02:11+08:00" />
+<meta property="article:modified_time" content="2019-12-19T20:02:11+08:00" />
+<meta itemprop="name" content="tmux基本使用">
+<meta itemprop="description" content="安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p">
 
-<meta itemprop="name" content="404 Page not found">
-<meta itemprop="description" content="Hugo theme jane example site.">
 
+<meta itemprop="datePublished" content="2019-12-19T20:02:11&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-19T20:02:11&#43;08:00" />
+<meta itemprop="wordCount" content="806">
+
+
+
+<meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="404 Page not found"/>
-<meta name="twitter:description" content="Hugo theme jane example site."/>
+<meta name="twitter:title" content="tmux基本使用"/>
+<meta name="twitter:description" content="安装运行 macOS 上使用 Homebrew 安装即可: brew install tmux 快捷键 一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（p"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -327,21 +337,226 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-<div class="not-found">
-  <h1 class="error-emoji"></h1>
-  <p class="error-text">/* 404 page not found. */</p>
-  <p class="error-link"><a href="/">↑ Back Home ↑</a></p>
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">tmux基本使用</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-12-19" class="post-time">
+          2019-12-19
+        </time>
+        
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#安装运行">安装运行</a></li>
+<li><a href="#快捷键">快捷键</a></li>
+<li><a href="#窗格操作">窗格操作</a></li>
+<li><a href="#窗口操作">窗口操作</a></li>
+<li><a href="#会话操作">会话操作</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
 </div>
-<script>
-  var errorEmojiContainer = document.getElementsByClassName('error-emoji')[0];
-  var emojiArray = [
-    '\\(o_o)/', '(o^^)o', '(˚Δ˚)b', '(^-^*)', '(≥o≤)', '(^_^)b', '(·_·)',
-    '(=\'X\'=)', '(>_<)', '(;-;)', '\\(^Д^)/',
-  ];
-  var errorEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];
-  errorEmojiContainer.appendChild(document.createTextNode(errorEmoji));
-</script>
+
+    
+    <div class="post-content">
+      
+
+<h3 id="安装运行">安装运行</h3>
+
+<p>macOS 上使用 Homebrew 安装即可:</p>
+
+<pre><code>brew install tmux
+</code></pre>
+
+<h3 id="快捷键">快捷键</h3>
+
+<p>一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（pane）快捷键列表，大家可以依次尝试下:</p>
+
+<h3 id="窗格操作">窗格操作</h3>
+
+<ul>
+<li><p>% 左右平分出两个窗格</p></li>
+
+<li><p>&rdquo; 上下平分出两个窗格</p></li>
+
+<li><p>x 关闭当前窗格</p></li>
+
+<li><p>{ 当前窗格前移</p></li>
+
+<li><p>} 当前窗格后移</p></li>
+
+<li><p>; 选择上次使用的窗格</p></li>
+
+<li><p>o 选择下一个窗格，也可以使用上下左右方向键来选择</p></li>
+
+<li><p>space 切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换</p></li>
+
+<li><p>z 最大化当前窗格，再次执行可恢复原来大小</p></li>
+
+<li><p>q 显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格</p></li>
+</ul>
+
+<h3 id="窗口操作">窗口操作</h3>
+
+<p>tmux 除了窗格以外，还有窗口（window） 的概念。依次使用以下快捷键来熟悉 tmux 的窗口操作：</p>
+
+<ul>
+<li><p>c 新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态</p></li>
+
+<li><p>p 切换至上一窗口</p></li>
+
+<li><p>n 切换至下一窗口</p></li>
+
+<li><p>w 窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择</p></li>
+
+<li><p>&amp; 关闭当前窗口</p></li>
+
+<li><p>, 重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id</p></li>
+
+<li><p>0 切换至 0 号窗口，使用其他数字 id 切换至对应窗口</p></li>
+
+<li><p>f 根据窗口名搜索选择窗口，可模糊匹配</p></li>
+</ul>
+
+<h3 id="会话操作">会话操作</h3>
+
+<p>如果运行了多次 tmux 命令则会开启多个 tmux 会话（session）。在 tmux 会话中，使用前缀快捷键 ⌃b 配合以下快捷键可操作会话：</p>
+
+<ul>
+<li><p>$ 重命名当前会话</p></li>
+
+<li><p>s 选择会话列表</p></li>
+
+<li><p>d detach 当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程</p></li>
+</ul>
+
+<p>在 shell 主进程下运行以下命令可以操作 tmux 会话：</p>
+
+<pre><code>tmux new -s foo # 新建名称为 foo 的会话
+tmux ls # 列出所有 tmux 会话
+tmux a # 恢复至上一次的会话
+tmux a -t foo # 恢复名称为 foo 的会话，会话默认名称为数字
+tmux kill-session -t foo # 删除名称为 foo 的会话
+tmux kill-server # 删除所有的会话
+</code></pre>
+
+<p>除以上提到的快捷键以外，tmux 还有许多其他的快捷键和命令，使用前缀快捷键 ⌃b 加 ? 可以查看所有的快捷键列表，该列表视图为 tmux copy 模式，该模式下可使用以下快捷键（无需加 ⌃b 前缀）：</p>
+
+<pre><code>⌃v 下一页
+Meta v 上一页 （tmux 快捷键为 Emacs 风格，这里的 Meta 键可用 Esc 模拟）
+⌃s 向前搜索
+q 退出 copy 模式
+</code></pre>
+
+<p>Via <a href="https://www.cnblogs.com/kaiye/p/6275207.html">猫哥_kaiye</a></p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">stormzhai</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2019-12-19
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">curl基本使用</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2019-12-13t131735/">
+            <span class="next-text nav-default">git常用命令</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>

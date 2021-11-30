@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MongoDB数据库［李兴华老师教学学习笔记］ - stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="stormzhai" />
+  <meta name="description" content="1、MongoDB简介（了解） MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了" />
+
+  <meta name="keywords" content="Hugo, theme, jane" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.59.1" />
+
+
+<link rel="canonical" href="http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="MongoDB数据库［李兴华老师教学学习笔记］" />
+<meta property="og:description" content="1、MongoDB简介（了解） MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<meta property="article:published_time" content="2021-11-30T12:33:18+08:00" />
+<meta property="article:modified_time" content="2021-11-30T12:33:18+08:00" />
+<meta itemprop="name" content="MongoDB数据库［李兴华老师教学学习笔记］">
+<meta itemprop="description" content="1、MongoDB简介（了解） MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了">
+
+
+<meta itemprop="datePublished" content="2021-11-30T12:33:18&#43;08:00" />
+<meta itemprop="dateModified" content="2021-11-30T12:33:18&#43;08:00" />
+<meta itemprop="wordCount" content="15547">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MongoDB数据库［李兴华老师教学学习笔记］"/>
+<meta name="twitter:description" content="1、MongoDB简介（了解） MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">stormzhai</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/">首页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/about">关于我</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://stormzhai.github.io/running_page/" rel="noopener" target="_blank">
+              Running
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      stormzhai
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/">首页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="http://stormzhai.github.io/about">关于我</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://stormzhai.github.io/running_page/" rel="noopener" target="_blank">
+              Running
+              
+              <i class="iconfont">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M623.36 272.96 473.216 423.04C467.2 429.056 467.072 438.656 472.896 444.416c0 0-6.72-6.656 1.6 1.6C496.064 467.648 528.64 500.224 528.64 500.224 534.464 506.048 544 505.856 550.016 499.904l150.08-150.144 67.328 66.432c9.024 8.96 27.456 4.544 30.4-8.96 19.968-92.608 46.656-227.52 46.656-227.52 6.848-34.496-16.192-56.704-49.92-49.92 0 0-134.656 26.816-227.328 46.784C560.32 178.048 556.352 182.272 554.752 187.136c-3.2 6.208-3.008 14.208 3.776 20.992L623.36 272.96z"></path>
+  <path d="M841.152 457.152c-30.528 0-54.784 24.512-54.784 54.656l0 274.752L237.696 786.56 237.696 237.696l206.016 0c6.656 0 10.752 0 13.248 0C487.68 237.696 512 213.184 512 182.848 512 152.32 487.36 128 456.96 128L183.04 128C153.216 128 128 152.576 128 182.848c0 3.136 0.256 6.272 0.768 9.28C128.256 195.136 128 198.272 128 201.408l0 639.488c0 0.064 0 0.192 0 0.256 0 0.128 0 0.192 0 0.32 0 30.528 24.512 54.784 54.784 54.784l646.976 0c6.592 0 9.728 0 11.712 0 28.736 0 52.928-22.976 54.464-51.968C896 843.264 896 842.304 896 841.344l0-20.352L896 561.408 896 512.128C896 481.792 871.424 457.152 841.152 457.152z"></path>
+</svg>
+
+              </i>
+            </a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">MongoDB数据库［李兴华老师教学学习笔记］</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-11-30" class="post-time">
+          2021-11-30
+        </time>
+        
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-mongodb简介-了解">1、MongoDB简介（了解）</a></li>
+<li><a href="#2-mongodb的安装与配置-重点">2、MongoDB的安装与配置（重点）</a></li>
+<li><a href="#3-mongodb的基础操作-重点">3、MongoDB的基础操作（重点）</a>
+<ul>
+<li><a href="#1-使用mldn数据库">1、 使用mldn数据库：</a></li>
+<li><a href="#2-创建一个集合-创建一个emp集合">2、 创建一个集合——创建一个emp集合</a></li>
+<li><a href="#3-但是很多的时候如果按照以上的代码形式进行会觉得你不正常-因为正常人使用mongondb数据库集合操作的时候都是直接向里面保存一个数据">3、但是很多的时候如果按照以上的代码形式进行会觉得你不正常，因为正常人使用MongonDB数据库集合操作的时候都是直接向里面保存一个数据。</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h3 id="1-mongodb简介-了解">1、MongoDB简介（了解）</h3>
+
+<p>MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了NOSQL数据库。数据库之中支持的SQL语句是由IBM开发出来的，并且最早就应用在了Oracle数据库，但是SQL语句的使用并不麻烦，就是几个简单的单词：SELECT、FROM、WHERE、GROUP
+BY、HAVING、ORDER
+BY。但是在这个时候有人开始反感于编写SQL操作。于是有一些人就开始提出一个理论——不要去使用SQL，于是最早的NoSQL概念产生了。可是后来的发展产生了一点变化，在90年代到2010年之间，世界上最流行的数据库依然是关系型数据库，并且围绕着关系型数据库开发出了大量的程序应用。后来又随着移动技术（云计算、大数据）的发展，很多公司并不愿意去使用大型的厂商数据库——
+Oracle、DB2，因为这些人已经习惯于使用MySQL数据库了。这些人发现在大数据以及云计算的环境下，数据存储受到了很大的挑战，那么后来就开始重新进行了NoSQL数据库的开发，但是经过长期的开发发现，NoSQL数据库依然不可能离开传统的关系型数据（NoSQL、Not
+OnlySQL）。</p>
+
+<p>实际上在现实的开发之中一直存在一种神奇的问题：</p>
+
+<p>·数据表→ JDBC读取→ POJO（VO、PO）→控制层转化为JSON数据→客户端。</p>
+
+<p>可是这样的转换实在是太麻烦了，那么最好的做法是，直接有一个数据库就存放有要显示的JSON数据该有多好，那么就省略所有需要进行转换的过程。所以在实际的开发之中，往往除了关系型数据库之外还要提供有一个NoSQL数据库，其中NoSQL数据库负责数据的读取，因为直接保存的就是JSON（前提：MongoDB中的数据是排列好的组合数据）。</p>
+
+<p>例如：现在要求显示出每个雇员的编号、姓名、职位、部门名称、部门位置、工资等级。传统的关系型数据库之中一定要存放大量的冗余数据，不合理。而有了NoSQL数据库之中，可以直接在业务层里面将数据交给NoSQL数据库保存，按照指定的结构进行存储。</p>
+
+<p>在MongoDB数据库之中与Oracle数据库有如下的概念对应：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/mongo_learn_1.png" alt="知识点串联成知识网络" /></p>
+
+<p>在整个行业之中，MongoDB数据库是发展最好的一个NoSQL数据库，因为它与Node.JS捆绑在一起了，也就是如果你要从事Node.JS的开发，那么一定要使用MongoDB，而Node.JS（基于JavaScript）在国内最成功的应用——
+taobao。</p>
+
+<p>MongoDB之所以能够更好的发展也取决于：面向集合的存储过程、模式自由（无模式）、方便的进行数据的存储扩充、支持索引、支持短暂数据保留、具备完整的数据库状态监控、基于BSON应用。</p>
+
+<h3 id="2-mongodb的安装与配置-重点">2、MongoDB的安装与配置（重点）</h3>
+
+<p>如果要想得到MongoDB数据库只需要登陆（www.mongodb.org）上就可以直接下载可用版本，最新的版本是0.x，但是这个版本变为了windows安装版（只是把原来的解压缩版变为了安装拷贝）。</p>
+
+<p>将下载下来的MongoDB数据库直接进行安装。安装的时候需要选择好对应的操作系统，本次使用的是64位安装版。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117180943.png" alt="安装版" /></p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117181057.png" alt="安装版" /></p>
+
+<p>随后将MongonDB数据库保存在E盘目录下。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117181225.png" alt="数据库保存" /></p>
+
+<p>此时MongoDB安装完成之后，严格来讲并不能够在windows下使用，需要为它配置path环境属性，配置目录：“E:\MongoDB\bin”。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117181418.png" alt="" /></p>
+
+<p>如果要想正常启动MongoDB数据库，那么必须建立一个文件夹，这个文件夹将保存所有的数据库的信息，现在将在MongoDB文件夹之中建立一个db的目录，并且在此目录下保存所有的数据文件。</p>
+
+<p>MongoDB数据库的启动需要使用mongod.exe命令完成，启动的时候可以设置端口号，也可以不设置端口号。</p>
+
+<p>·不设置端口号启动MongoDB服务：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117181457.png" alt="" /></p>
+
+<p>·设置端口号启动</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117181740.png" alt="" /></p>
+
+<p>如果日后需要通过程序访问数据库的话，那么一定要设置端口号。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117182215.png" alt="" /></p>
+
+<p>当MongoDB服务启动之后，可以使用mongo命令连接数据库。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117182520.png" alt="" /></p>
+
+<p>范例：查询所有的数据库</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117182806.png" alt="" /></p>
+
+<p>此时只存在有一个local的本地数据库，不过这个数据库不使用。</p>
+
+<p>虽然以上的代码实现了数据库的启动与连接操作，但是从严格意义上来讲，以上的代码没有任何的用处，因为从实际的开发来讲，在MongoDB启动的时候需要设置一些相应参数：端口号、是否启用用户验证、数据文件的位置等等。</p>
+
+<p>范例：在E:\MongoDB目录下建立一个文件“mongodb.conf”</p>
+
+<p>·同时建立了一个保存日志信息的文件：log\mongodb.log；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117182847.png" alt="" /></p>
+
+<p>·随后重新启动MongonDB数据库服务：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117182923.png" alt="" /></p>
+
+<p>范例：连接数据库</p>
+
+<p>此时服务器已经存在有指定的端口号了。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183009.png" alt="" /></p>
+
+<p>使用端口号启动在日后的程序开发部分是非常有用处的。</p>
+
+<h3 id="3-mongodb的基础操作-重点">3、MongoDB的基础操作（重点）</h3>
+
+<p>在MongoDB数据库里面是存在有数据库的概念，但是没有模式（所有的信息都是按照文档保存的），保存数据的结构就是JSON结构，只不过在进行一些数据处理的时候才会使用到MongoDB自己的一些操作符。</p>
+
+<h4 id="1-使用mldn数据库">1、 使用mldn数据库：</h4>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183142.png" alt="" /></p>
+
+<p>实际上这个时候并不会创建数据库，只有在数据库里面保存集合数据之后才能够真正创建数据库。</p>
+
+<h4 id="2-创建一个集合-创建一个emp集合">2、 创建一个集合——创建一个emp集合</h4>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183311.png" alt="" /></p>
+
+<p>这个时候mldn数据库才会真正的存在。</p>
+
+<h4 id="3-但是很多的时候如果按照以上的代码形式进行会觉得你不正常-因为正常人使用mongondb数据库集合操作的时候都是直接向里面保存一个数据">3、但是很多的时候如果按照以上的代码形式进行会觉得你不正常，因为正常人使用MongonDB数据库集合操作的时候都是直接向里面保存一个数据。</h4>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183355.png" alt="" /></p>
+
+<p>4、 查看所有集合：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183423.png" alt="" /></p>
+
+<p>发现dept集合自动创建了。</p>
+
+<p>5、 查看emp表的数据</p>
+
+<p>·语法：db.集合名称.find 若干条件</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183504.png" alt="" /></p>
+
+<p>从传统的数据表来看（集合就相当于表的结构），表的结构一旦定义就必须按照其定义的要求进行内容的编写，但是MongoDB不一样，它可以自己随意扩充数据。</p>
+
+<p>6、 增加不规则的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183539.png" alt="" /></p>
+
+<p>此时dept集合的内容可以由用户随便去定义，完全不用考虑其它的结构，那么实际上就必须明确一点了，在MongoDB数据库之中是绝对不可能存在有查看集合结构的操作。</p>
+
+<p>7、 关于ID的问题</p>
+
+<p>在MongoDB集合中的每一行记录都会自动的生成一个“&rdquo;_id&rdquo;
+:ObjectId”数据，这个数据组成是：“时间戳 + 机器码 +
+PID + 计数器”，这个ID的信息是MongonDB数据自己为用户生成的。</p>
+
+<p>8、 查看单独的一个文档信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183611.png" alt="" /></p>
+
+<p>9、 删除数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183641.png" alt="" /></p>
+
+<p>10、更新数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183711.png" alt="" /></p>
+
+<p>11、删除集合</p>
+
+<p>·语法：db.集合名称.drop</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183743.png" alt="" /></p>
+
+<p>12、删除数据库（删除当前所在的数据库）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183743.png" alt="" /></p>
+
+<p>删除数据库的是删除当前所在的数据库，必须先切换到数据库后才可以删除。</p>
+
+<p>4、数据操作（重点）</p>
+
+<p>只要是数据库那么就绝对离不开最为核心的功能：CRUD，所以在MongoDB里面对于数据的操作也是有支持的，但是需要提醒的是，除了增加之外，其它的都很麻烦。</p>
+
+<p>4.1、数据增加</p>
+
+<p>使用“db.集合.insert”可以实现数据的增加操作。</p>
+
+<p>范例：增加一个简单数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183911.png" alt="" /></p>
+
+<p>范例：保存数组</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117183945.png" alt="" /></p>
+
+<p>如果要想保存多个数据，那么就使用数组。</p>
+
+<p>范例：保存10000个数据？</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184015.png" alt="" /></p>
+
+<p>如果数据保存很多的情况下，列表时不会全部列出，它只会列出部分的内容。</p>
+
+<p>4.2、数据查询</p>
+
+<p>任何的数据库之中，数据的查询操作都是最为麻烦的，而在MongoDB数据库里面，对于查询的支持非常到位，包含有关系运算、逻辑运算、数组运算、正则运算等等。</p>
+
+<p>首先对于数据的查询操作核心的语法：“db.集合名称.find
+查询条件设置显示的字段”。</p>
+
+<p>范例：最简单的用法就是直接使用find函数完成查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184113.png" alt="" /></p>
+
+<p>范例：希望查询出url为“www.mldn.cn”的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184149.png" alt="" /></p>
+
+<p>发现在进行数据查询的时候也是按照JSON的形式设置的相等关系。它的整个开发之中都不可能离开JSON数据。</p>
+
+<p>对于设置的显示字段严格来讲就称为数据的投影操作，如果不需要显示的字段设置“0”，而需要显示的字段设置“1”。</p>
+
+<p>范例：不想显示“_id”</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184218.png" alt="" /></p>
+
+<p>大部分的情况下，这种投影操作的意义不大。同时对于数据的查询也可以使用“pretty”函数进行漂亮显示。</p>
+
+<p>范例：漂亮显示</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184249.png" alt="" /></p>
+
+<p>数据列多的时候一定可以看出华丽的显示效果。</p>
+
+<p>范例：查询单个数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184339.png" alt="" /></p>
+
+<p>利用以上的查询可以实现格式化的输出效果，前提：列的内容必须多。</p>
+
+<p>4.2.1、关系运算</p>
+
+<p>在MongoDB里面支持的关系查询操作：大于（）、小于（lt）、大于等于（）、小于等于（lte）、不等于（）、等于（eq）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。</p>
+
+<p>范例：定义一个学生信息集合</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117184611.png" alt="" /></p>
+
+<p>范例：查询姓名是张三的学生信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185154.png" alt="" /></p>
+
+<p>范例：查询性别是男的学生信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185216.png" alt="" /></p>
+
+<p>范例：查询年龄大于19岁的学生</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185243.png" alt="" /></p>
+
+<p>范例：查询成绩大于等于60分的学生</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185311.png" alt="" /></p>
+
+<p>范例：查询姓名不是王五的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185340.png" alt="" /></p>
+
+<p>此时与之前最大的区别就在于，在一个JSON结构里面需要定义其它的JSON结构，并且这种风格在日后通过程序进行操作的时候依然如此。</p>
+
+<p>4.2.2、逻辑运算</p>
+
+<p>逻辑运算主要就是三种类型：与（
+）
+、
+或
+（
+or）、非（
+、
+nor）。</p>
+
+<p>范例：查询年龄在19 ~ 20岁的学生信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185403.png" alt="" /></p>
+
+<p>在进行逻辑运算的时候“and”的连接是最容易的，因为只需要利用“,”分割若干个条件就可以了。</p>
+
+<p>范例：查询年龄不是19岁的学生</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185428.png" alt="" /></p>
+
+<p>范例：查询年龄大于19岁，或者成绩大于90分的学生信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185456.png" alt="" /></p>
+
+<p>范例：也可以进行或的求反操作</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185519.png" alt="" /></p>
+
+<p>针对于或的操作可以实现一个求反的功能。</p>
+
+<p>在这几个逻辑运算之中，与的连接最简单的，而或的连接需要为数据设置数组的过滤条件。</p>
+
+<p>4.2.3、求模</p>
+
+<p>模的运算使用“mod”来完成，语法“{mod : [数字,余数]}”。</p>
+
+<p>范例：求模</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185545.png" alt="" /></p>
+
+<p>利用求模计算可以编写一些数学的计算公式。</p>
+
+<p>4.2.4、范围查询</p>
+
+<p>只要是数据库，必须存在有“
+（
+在
+范
+围
+之
+中
+）
+、
+nin”（不在范围之中）。</p>
+
+<p>范例：查询姓名是“张三”、“李四”、“王五”的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185611.png" alt="" /></p>
+
+<p>范例：不在范围</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185634.png" alt="" /></p>
+
+<p>在实际的工作之中，范围的操作很重要。</p>
+
+<p>4.2.5、数组查询</p>
+
+<p>首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。</p>
+
+<p>范例：保存一部分数组内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185700.png" alt="" /></p>
+
+<p>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：
+、
+size、
+、
+elemMatch。</p>
+
+<p>范例：查询同时参加语文和数学课程的学生</p>
+
+<p>·现在两个数组内容都需要保存，所以使用“{&ldquo;$all&rdquo;,[内容1,内容2,..]}”</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185727.png" alt="" /></p>
+
+<p>现在所有显示的学生信息里面包含语文和数学的内容，而如果差一个内容的不会显示。</p>
+
+<p>虽然“$all”计算可以用于数组上，但是也可以用于一个数据的匹配上。</p>
+
+<p>范例：查询学生地址是“海淀区”的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185752.png" alt="" /></p>
+
+<p>既然在集合里面现在保存的是数组信息，那么数组就可以利用索引操作，使用“key.index”的方式来定义索引。</p>
+
+<p>范例：查询数组中第二个内容（index= 1，索引下标从0开始）为数学的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185815.png" alt="" /></p>
+
+<p>范例：要求查询出只参加两门课程的学生</p>
+
+<p>·使用“$size”来进行数量的控制。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117185840.png" alt="" /></p>
+
+<p>发现在进行数据查询的时候只要是内容复合条件，数组的内容就全部显示出来了，但是现在希望可以控制数组的返回的数量，那么可以使用“$slice”进行控制。</p>
+
+<p>范例：返回年龄为19岁所有学生的信息，但是要求只显示两门参加课程</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117190124.png" alt="" /></p>
+
+<p>现在只取得了前两门的信息，那么也可以设置负数表示取出后两门的信息。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117190400.png" alt="" /></p>
+
+<p>或者只是取出中间部分的信息。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211117190426.png" alt="" /></p>
+
+<p>在此时设置的两个数据里面第一个数据表示跳过的数据量，而第二个数据表示返回的数量。</p>
+
+<p>4.2.6、嵌套集合运算</p>
+
+<p>在MongoDB数据里面每一个集合数据可以继续保存其它的集合数据，例如：有些学生需要保存家长信息。</p>
+
+<p>范例：增加数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091459.png" alt="" /></p>
+
+<p>此时给出的内容是嵌套的集合，而这种集合的数据的判断只能够通过“$elemMatch”完成。</p>
+
+<p>范例：查询出父母有人是局长的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091537.png" alt="" /></p>
+
+<p>由于这种查询的时候条件比较麻烦，所以如果可能，尽量别搞这么复杂的数据结构组成。</p>
+
+<p>4.2.7、判断某个字段是否存在</p>
+
+<p>使用“$exists”可以判断某个字段是否存在，如果设置为true表示存在，如果设置为false就表示不存在。</p>
+
+<p>范例：查询具有parents成员的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091609.png" alt="" /></p>
+
+<p>范例：查询不具有course成员的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091641.png" alt="" /></p>
+
+<p>可以利用此类查询来进行一些不需要的数据的过滤。</p>
+
+<p>4.2.8、条件过滤</p>
+
+<p>实际上习惯于传统关系型数据库开发的我们对于数据的筛选，可能首先想到的一定是where子句，所以在MongoDB里面也提供有“$where”。</p>
+
+<p>范例：使用where进行数据查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091710.png" alt="" /></p>
+
+<p>对于“$where”是可以简化的，但是这类的操作是属于进行每一行的信息判断，实际上对于数据量较大的情况并不方便使用。实际上以上的代码严格来讲是属于编写一个操作的函数。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091743.png" alt="" /></p>
+
+<p>以上只是查询了一个判断，如果要想实现多个条件的判断，那么就需要使用and连接。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091809.png" alt="" /></p>
+
+<p>虽然这种形式的操作可以实现数据查询，但是最大的缺点是将在MongoDB里面保存的BSON数据变为了JavaScript的语法结构，这样的方式不方便使用数据库索引机制。</p>
+
+<p>4.2.9、正则运算</p>
+
+<p>如果要想实现模糊查询，那么必须使用正则表达式，而且正则表达式使用的是语言Perl兼容的正则表达式的形式。如果要想实现正则使用，则按照如下的定义格式：</p>
+
+<p>·基础语法：{key : 正则标记}；</p>
+
+<p>·完整语法：{key : {&rdquo;
+正
+则
+标
+记
+options&rdquo; : 选项}}。</p>
+
+<p>|- 对于options主要是设置正则的信息查询的标记：</p>
+
+<p>|- “i”：忽略字母大小写；</p>
+
+<p>|- “m”多行查找；</p>
+
+<p>|- “x”：空白字符串除了被转义的或在字符类中意外的完全被忽略；</p>
+
+<p>|- “s”：匹配所有的字符（圆点、“.”），包括换行内容。</p>
+
+<p>|-
+需要注意的是，如果是直接使用（javascript）那么只能够使用i和m，而“x”和“s”必须使用“$regex”。</p>
+
+<p>范例：查询以“谷”开头的姓名</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091904.png" alt="" /></p>
+
+<p>范例：查询姓名有字母A</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091928.png" alt="" /></p>
+
+<p>如果要执行模糊查询的操作，严格来讲只需要编写一个关键字就够了。</p>
+
+<p>正则操作之中除了可以查询出单个字段的内容之外，也可以进行数组数据的查询。</p>
+
+<p>范例：查询数组数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118091949.png" alt="" /></p>
+
+<p>MongoDB中的正则符号和之前Java正则是有一些小小差别，不建议使用以前的一些标记，正则就将其应用在模糊数据查询上。</p>
+
+<p>4.2.10、数据排序</p>
+
+<p>在MongoDB里面数据的排序操作使用“sort”函数，在进行排序的时候可以有两个顺序：升序（1）、降序（-1）。</p>
+
+<p>范例：数据排序</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092011.png" alt="" /></p>
+
+<p>但是在进行排序的过程里面有一种方式称为自然排序，按照数据保存的先后顺序排序，使用“$natural”表示。</p>
+
+<p>范例：自然排序</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092031.png" alt="" /></p>
+
+<p>在MongoDB数据库里面排序的操作相比较传统关系型数据库的设置要简单。</p>
+
+<p>4.2.11、数据分页显示</p>
+
+<p>在MongoDB里面的数据分页显示也是符合于大数据要求的操作函数：</p>
+
+<p>· skip：表示跨过多少数据行；</p>
+
+<p>· limit：取出的数据行的个数限制。</p>
+
+<p>范例：分页显示（第一页，skip、limit）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092100.png" alt="" /></p>
+
+<p>范例：分页显示（第二页，skip、limit）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092133.png" alt="" /></p>
+
+<p>这两个分页的控制操作，就是在以后只要是存在有大数据的信息情况下都会使用它。</p>
+
+<p>4.3、数据更新操作</p>
+
+<p>对于MongoDB而言，数据的更新基本上是一件很麻烦的事情，如果在实际的工作之中，真的具有此类的操作支持，那么最好的做法，在MongoDB里面对于数据的更新操作提供了两类函数：save、update。</p>
+
+<p>4.1、函数的基本使用</p>
+
+<p>如果要修改数据最直接的使用函数就是update函数，但是这个函数的语法要求很麻烦：</p>
+
+<p>·语法：db.集合.update
+更
+新
+条
+件
+新
+的
+对
+象
+数
+据
+（
+更
+新
+操
+作
+符
+）
+；</p>
+
+<p>|-
+upsert：如果要更新的数据不存在，则增加一条新的内容（true为增加、false为不增加）；</p>
+
+<p>|-
+multi：表示是否只更新满足条件的第一行记录，如果设置为false，只更新第一条，如果是true全更新。</p>
+
+<p>范例：更新存在的数据——将年龄是19岁的人的成绩都更新为100分（此时会返回多条数据）</p>
+
+<p>·只更新第一条数据：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092201.png" alt="" /></p>
+
+<p>·所有满足条件的数据都更新</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092224.png" alt="" /></p>
+
+<p>范例：更新不存在的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092243.png" alt="" /></p>
+
+<p>由于没有年龄是30岁的学生信息，所以此时相当于进行了数据的创建。</p>
+
+<p>那么除了update函数之外，还提供有一个save函数，这个函数的功能与更新不存在的内容相似。</p>
+
+<p>范例：使用save操作</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092305.png" alt="" /></p>
+
+<p>由于此时对应的id数据存在了，所以就变为了更新操作。但是如果要保存的数据不存在（不能保存有“_id”），那么就变为了增加操作。</p>
+
+<p>4.2、修改器</p>
+
+<p>对MongoDB数据库而言，数据的修改会牵扯到内容的变更、结构的变更（包含有数组），所以在进行MongoDB设计的时候就提供有一系列的修改器的应用，那么像之前使用的“$set”就是一个修改器。</p>
+
+<p>1、 $inc：主要针对于一个数字字段，增加某个数字字段的数据内容；</p>
+
+<p>·语法：{&ldquo;$inc&rdquo; : {&ldquo;成员&rdquo; : 内容}}</p>
+
+<p>范例：将所有年龄为19岁的学生成绩一律减少30分</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092325.png" alt="" /></p>
+
+<p>2、 $set：进行内容的重新设置；</p>
+
+<p>·语法：{&ldquo;$set&rdquo; : {&ldquo;成员&rdquo; : &ldquo;新内容&rdquo;}}；</p>
+
+<p>范例：将年龄是20岁的人的成绩修改为89</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092354.png" alt="" /></p>
+
+<p>3、 $unset：删除某个成员的内容；</p>
+
+<p>·语法：{&ldquo;$unset&rdquo; : {&ldquo;成员&rdquo; : 1}}</p>
+
+<p>范例：删除“张三”的年龄与成绩信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092421.png" alt="" /></p>
+
+<p>执行之后指定的成员内容就消失了。</p>
+
+<p>4、 $push：相当于将内容追加到指定的成员之中（基本上是数组）；</p>
+
+<p>·语法：{&ldquo;push&rdquo; : {成员 : value}}</p>
+
+<p>范例：向“李四”添加课程信息（此时张三信息下没有course信息）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092448.png" alt="" /></p>
+
+<p>范例：向“谷大神 - E”里面的课程追加一个“美术”</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092509.png" alt="" /></p>
+
+<p>就是进行数组数据的添加操作使用的，如果没有数组则进行一个新的数组的创建，如果有则进行内容的追加。</p>
+
+<p>5、
+：
+与
+push”是类似的，可以一次追加多个内容到数组里面；</p>
+
+<p>·语法：{&ldquo;pushAll&rdquo; : {成员 : 数组内容}}</p>
+
+<p>范例：向“王五”的信息里面添加多个课程内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092529.png" alt="" /></p>
+
+<p>6、 $addToSet：向数组里面增加一个新的内容，只有这个内容不存在的时候才会增加；</p>
+
+<p>·语法：{&ldquo;$addToSet&rdquo; : {成员 : 内容}}</p>
+
+<p>范例：向王五的信息增加新的内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092552.png" alt="" /></p>
+
+<p>此时会判断要增加的内容在数组里面是否已经存在了，如果不存在则向数组之中追加内容，如果存在了则不做任何的修改操作。</p>
+
+<p>7、 $pop：删除数组内的数据；</p>
+
+<p>·语法：{&ldquo;$pop&rdquo; : {成员 :
+内容}}，内容如果设置为-1表示删除第一个，如果是1表示删除最后一个；</p>
+
+<p>范例：删除王五的第一个课程</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092616.png" alt="" /></p>
+
+<p>范例：删除王五的最后一个课程</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092638.png" alt="" /></p>
+
+<p>8、 $pull：从数组内删除一个指定内容的数据</p>
+
+<p>·语法：{&ldquo;$pull&rdquo; : {成员 : 数据}}，进行数据比对的，如果是此数据则删除；</p>
+
+<p>范例：删除王五学生的音乐课程信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092659.png" alt="" /></p>
+
+<p>9、 $pullAll：一次性删除多个内容；</p>
+
+<p>·语法：{&ldquo;$pull&rdquo; : {成员 : [数据, 数据,&hellip;]}}</p>
+
+<p>范例：删除“谷大神 - A”中的三门课程</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092717.png" alt="" /></p>
+
+<p>10、 $rename：为成员名称重命名；</p>
+
+<p>·语法：{&ldquo;$rename&rdquo; : {旧的成员名称 : 新的成员名称}}；</p>
+
+<p>范例：将“张三”name成员名称修改为“姓名”</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092738.png" alt="" /></p>
+
+<p>在整个MongoDB数据库里面，提供的修改器的支持很到位。</p>
+
+<p>4.4、删除数据</p>
+
+<p>在MongoDB里面数据的删除实际上并不复杂，只需要使用“remove”函数就可以了。</p>
+
+<p>但是在这个函数是有两个可选项：</p>
+
+<p>·删除条件：满足条件的数据被删除；</p>
+
+<p>·是否只删除一个数据，如果设置为true或者是1表示只删除一个。</p>
+
+<p>范例：清空infos集合中的内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092804.png" alt="" /></p>
+
+<p>范例：删除所有姓名里面带有“谷”的信息，默认情况下会全部删除</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092822.png" alt="" /></p>
+
+<p>范例：删除姓名带有“高”的信息，要求只删除一个</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092839.png" alt="" /></p>
+
+<p>删除操作里面依然需要使用限定查询的相关操作内容。</p>
+
+<p>5、游标（重点）</p>
+
+<p>所谓的游标就是指的数据可以一行行的进行操作，非常类似于ResultSet数据处理。在MongoDB数据库里面对于游标的控制非常的简单，只需要使用find函数就可以返回游标了。对于返回的游标如果要想进行操作，使用两个函数：</p>
+
+<p>·判断是否有下一行数据：hasNext；</p>
+
+<p>·取出当前数据：next；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092901.png" alt="" /></p>
+
+<p>以上是游标的操作形式，但是实际上不可能这么去用，因为必须利用循环才能够输出内容。</p>
+
+<p>范例：编写具体的操作代码</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092924.png" alt="" /></p>
+
+<p>相当于每一个数据都单独拿出来进行逐行的控制。当游标数据取出来之后，实际上每行数据返回的都是一个Object型的内容，那么如果需要将数据按照json的形式出现，则可以使用printjson函数完成。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118092946.png" alt="" /></p>
+
+<p>在所有的已知数据库，只有MongoDB的游标操作是最简单，最直观的。</p>
+
+<p>6、索引（重点）</p>
+
+<p>在任何的数据库之中，索引都是一种提升数据库检索性能的手段，这一点在MongoDB数据库之中同样是存在的，在MongoDB数据库里面依然会存在有两种的索引创建：是自动创建的，另外一种索引是手工创建的。</p>
+
+<p>范例：重新准备一个新的简单集合</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093008.png" alt="" /></p>
+
+<p>此时在students集合上并没有去设置任何的索引，那么下面通过getIndexes函数来观察在students集合里面已经存在的索引内容。</p>
+
+<p>范例：查询默认状态下的students集合的索引内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093029.png" alt="" /></p>
+
+<p>现在发现会存在有一个“_id”列的索引内容。但是如果要想创建自己的索引，则可以使用如下的语法：</p>
+
+<p>·索引创建：db.集合名称.ensureIndex
+列
+|- 设置的1表示索引将按照升序的方式进行排列，如果使用降序设置“-1”。</p>
+
+<p>范例：创建一个索引，在age字段上设置一个降序索引；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093127.png" alt="" /></p>
+
+<p>此时并没有设置索引的名字，所以名字是自动命名的。命名规范：“字段名称_索引的排序模式”。</p>
+
+<p>范例：针对于当前的age字段上的索引做一个分析</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093144.png" alt="" /></p>
+
+<p>此时的查询使用了索引的技术，但是下面再来观察一个查询，不使用索引字段。</p>
+
+<p>范例：针对于score字段上设置查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093208.png" alt="" /></p>
+
+<p>此时在score字段上并没有设置索引，所以当前的索引形式就变为了全集合扫描的模式。</p>
+
+<p>但是如果说，现在换一种形式，年龄和成绩一起执行判断查询？</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093229.png" alt="" /></p>
+
+<p>这个时候虽然age字段上存在有索引，但是一个明显的问题是，由于score字段上没有索引，所以依然使用的是全表扫描操作，那么为了解决此时的问题，可以使用一个复合索引。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093249.png" alt="" /></p>
+
+<p>范例：默认使用索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093307.png" alt="" /></p>
+
+<p>但是如果换到了条件之中：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093327.png" alt="" /></p>
+
+<p>现在发现并没有使用索引，所以这个时候看能否强制使用一次索引。hint函数为强制使用索引操作。</p>
+
+<p>范例：强制使用索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093346.png" alt="" /></p>
+
+<p>如果正常来讲，这个代码根本就不可能调用默认的索引执行，但是我们觉得不好，所以需要使用hint函数来强制MongoDB告诉你必须使用一次索引，由于此时在age和score两个字段上已经设置了复合索引，那么现在使用的就是默认的复合索引。</p>
+
+<p>但是如果在一个集合里面设置了过多的索引，实际上会导致性能下降，那么就可以删除索引。</p>
+
+<p>范例：删除一个索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093406.png" alt="" /></p>
+
+<p>可是如果只是一个一个删除索引也会很麻烦，所以提供有删除全部索引的操作。</p>
+
+<p>范例：删除全部索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093426.png" alt="" /></p>
+
+<p>所谓的删除全部索引指的就是非“_id”的索引，所有的自定义索引。</p>
+
+<p>6.1、唯一索引</p>
+
+<p>唯一索引的主要目的是用在某一个字段上，使该字段的内容不重复。</p>
+
+<p>范例：创建唯一索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093447.png" alt="" /></p>
+
+<p>在name字段上的内容绝对不允许重复。</p>
+
+<p>范例：在students集合里面增加重复的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093507.png" alt="" /></p>
+
+<p>此时除了name字段上的内容之外，发现所有的数据都不一样，但是由于在name字段上设置了唯一索引，所以整个程序里面如果增加了重复内容，那么会出现以下的错误提示信息：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093526.png" alt="" /></p>
+
+<p>唯一索引能够保证指定字段上的数据不重复。</p>
+
+<p>6.2、过期索引</p>
+
+<p>在一些程序站点会出现若干秒之后信息被删除的情况，例如：手机信息验证码，那么在MongoDB里面就可以轻松的实现过期索引，但是这个时间往往不怎么准确。</p>
+
+<p>范例：设置过期索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093549.png" alt="" /></p>
+
+<p>设置索引在10秒后过期。</p>
+
+<p>范例：在一个phones集合里面设置过期索引</p>
+
+<p>如果要想实现过期索引，需要保存一个时间信息；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093615.png" alt="" /></p>
+
+<p>等到10秒以后（永远不会那么准确）所保存的数据就会消失。这样的特性在进行一些临时数据保存的时候非常有帮助，最早如果没有MongoDB这种特性，而只是使用最简单的关系型数据库开发，那么是非常麻烦的。</p>
+
+<p>6.3、全文索引</p>
+
+<p>在一些信息管理平台上经常需要进行信息模糊查询，最早的时候是利用了某个字段上实现的模糊查询，但是这个时候返回的信息并不会很准确，因为只能够查A字段或者是B字段，而在MongoDB里面实现了非常简单的全文检索。</p>
+
+<p>范例：定义一个新的集合</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093638.png" alt="" /></p>
+
+<p>范例：设置全文检索</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093702.png" alt="" /></p>
+
+<p>范例：实现数据的模糊查询</p>
+
+<p>如果要想表示出全文检索，则使用“
+判
+断
+符
+，
+而
+要
+想
+进
+行
+数
+据
+的
+查
+询
+则
+使
+用
+search”运算符：</p>
+
+<p>|- 查询指定关键字：{&ldquo;$search&rdquo; : &ldquo;查询关键字&rdquo;}；</p>
+
+<p>|- 查询多个关键字（或关系）：{&ldquo;$search&rdquo; : &ldquo;查询关键字查询关键字 &hellip;&rdquo;}；</p>
+
+<p>|- 查询多个关键字（与关系）：{&ldquo;$search&rdquo; : &ldquo;\&ldquo;查询关键字\&rdquo;
+\&ldquo;查询关键字\&ldquo;&hellip;&rdquo;}</p>
+
+<p>|- 查询多个关键字（排除某一个）：{&ldquo;$search&rdquo; : &ldquo;查询关键字查询关键字 &hellip;
+-排除关键字&rdquo;}</p>
+
+<p>范例：查询单个内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093725.png" alt="" /></p>
+
+<p>范例：包含有“gry”与“sfq”的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093745.png" alt="" /></p>
+
+<p>范例：同时包含有“mldn”与“lxh”的内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093808.png" alt="" /></p>
+
+<p>范例：包含有“mldn”但是没有“gyh”的内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093827.png" alt="" /></p>
+
+<p>但是在进行全文检索操作的时候还可以使用相似度的打分来判断检索成果。</p>
+
+<p>范例：为结果打分</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093845.png" alt="" /></p>
+
+<p>按照打分的成绩进行排列，实际上就可以实现更加准确的信息搜索。</p>
+
+<p>但是在这里面还有一个小问题，如果一个集合的字段太多了，那么每一个字段都分别设置全文检索麻烦点，所以简单一些，可以为所有的字段设置全文检索。</p>
+
+<p>范例：为所有字段设置全文检索</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118101056.png" alt="" /></p>
+
+<p>这是一种最简单的设置全文索引的方式，但是尽可能别名，一个字：慢。</p>
+
+<p>6.4、地理信息索引</p>
+
+<p>地理信息索引分为两类：2D平面索引，另外就是2DSphere球面索引。在2D索引里面基本上能够保存的信息都是坐标，而且坐标保存的就是经纬度坐标。</p>
+
+<p>范例：定义一个商铺的集合</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093906.png" alt="" /></p>
+
+<p>范例：为shop的集合定义2D索引</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093926.png" alt="" /></p>
+
+<p>这个时候shop集合就可以实现坐标位置的查询了，而要进行查询有两种查询方式：</p>
+
+<p>·“$near”查询，查询距离某个点最近的坐标点；</p>
+
+<p>·“$geoWithin”查询：查询某个形状内的点；</p>
+
+<p>范例：假设我的现在的坐标是：[11,11]</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118093946.png" alt="" /></p>
+
+<p>但是如果执行了以上的查询，实际上会将数据集合里面的前100个点的信息都返回来了，可是太远了，设置一个距离范围——
+5个点内的。</p>
+
+<p>范例：设置查询距离范围</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094029.png" alt="" /></p>
+
+<p>但是需要注意一点，在2D索引里面虽然支持最大距离，但是不支持最小距离。</p>
+
+<p>但是也可以设置一个查询的范围，使用“$geoWithin”查询，而可以设置的范围：</p>
+
+<p>·矩形范围（box）：{&ldquo;box&rdquo;:[[x1,y1],[x2,y2]]}；</p>
+
+<p>·圆形范围（center）：{&ldquo;center&rdquo; : [[x1,y1],r]}；</p>
+
+<p>·多边型（polygon）：{&ldquo;polygon&rdquo; :[[x1,y1],x2,y2 , &hellip;]}</p>
+
+<p>范例：查询矩形</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094051.png" alt="" /></p>
+
+<p>范例：查询圆形</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094110.png" alt="" /></p>
+
+<p>在MongoDB数据库里面，除了一些支持的操作函数之外，还有一个重要的命令：runCommand，这个函数可以执行所有的特定的MongoDB命令。</p>
+
+<p>范例：利用runCommand实现信息查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094129.png" alt="" /></p>
+
+<p>这类的命令可以说是MongoDB之中最为基础的命令。</p>
+
+<p>7、聚合（重点）</p>
+
+<p>MongoDB的产生背景是在大数据环境，所谓的大数据实际上也就是进行的信息收集汇总。那么就必须存在有信息的统计操作，而这样的统计操作就称为聚合（直白：分组统计就是一种聚合操作）。</p>
+
+<p>7.1、取得集合的数据量</p>
+
+<p>对于集合的数据量而言，在MongoDB里面直接使用count函数就可以完成了。</p>
+
+<p>范例：统计students表中的数据量</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094153.png" alt="" /></p>
+
+<p>范例：模糊查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094216.png" alt="" /></p>
+
+<p>在进行信息查询的时候，不设置条件永远要比设置条件的查询快很多，也就是说在之前的代码编写里面不管是查询全部还是模糊查询，实际上最终都使用的模糊查询一种（没有设置关键字）。</p>
+
+<p>7.2、消除重复数据</p>
+
+<p>在学习SQL的时候对于重复的数据可以使用“DISTINCT”，那么这一操作在MongoDB之中依然支持。</p>
+
+<p>范例：查询所有name的信息</p>
+
+<p>·本次的操作没有直接的函数支持，只能够利用runCommand函数。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094237.png" alt="" /></p>
+
+<p>此时实现了对于name数据的重复值的筛选。</p>
+
+<p>7.3、group操作</p>
+
+<p>使用“group”操作可以实现数据的分组操作，在MongoDB里面会将集合一句指定的key的不同进行分组操作，并且每一个组都会产生一个处理的文档结果。</p>
+
+<p>范例：查询所有年龄大于等于19岁的学生信息，并且按照年龄分组</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094302.png" alt="" /></p>
+
+<p>以上的操作代码里面实现的就属于一种MapReduce，但是这样只是根据传统的数据库的设计思路，实现了一个所谓的分组操作，但是这个分组操作的最终结果是有限的。</p>
+
+<p>7.4、MapReduce</p>
+
+<p>MapReduce是整个大数据的精髓所在（实际中别用），所谓的MapReduce就是分为两步处理数据：</p>
+
+<p>· Map：将数据分别取出；</p>
+
+<p>· Reduce：负责数据的最后的处理。</p>
+
+<p>可是要想在MongoDB里面实现MapReduce处理，那么复杂度是相当高的。</p>
+
+<p>范例：建立一组雇员数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094329.png" alt="" /></p>
+
+<p>使用MapReduce操作最终会将处理结果保存在一个单独的集合里面，而最终的处理效果如下。</p>
+
+<p>范例：按照职位分组，取得每个职位的人名</p>
+
+<p>·编写分组的定义：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094347.png" alt="" /></p>
+
+<p>·第二步：编写reduce操作；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094408.png" alt="" /></p>
+
+<p>·第三步：针对于MapReduce处理完成的数据实际上也可以执行一个最后处理。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094427.png" alt="" /></p>
+
+<p>·进行操作的整合：</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094448.png" alt="" /></p>
+
+<p>现在执行之后，所有的处理结果都保存在了“t_job_emp”集合里面。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094815.png" alt="" /></p>
+
+<p>范例：统计出各性别的人数、平均工资、最低工资、雇员姓名</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094833.png" alt="" /></p>
+
+<p>虽然大数据的时代提供有最强悍的MapReduce支持，但是从现实的开发来讲，真的不可能使用起来。</p>
+
+<p>7.5、聚合框架（核心）</p>
+
+<p>MapReduce功能强大，但是它的复杂度和功能一样强大，那么很多时候我们需要MapReduce的功能，可是又不想把代码写的太复杂，所以从Mongo
+2.x版本之后开始引入了聚合框架并且提供了聚合函数：aggregate。</p>
+
+<p>7.5.1、$group</p>
+
+<p>group主要进行分组的数据操作。</p>
+
+<p>范例：实现聚合查询的功能——求出每个职位的雇员人数</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094857.png" alt="" /></p>
+
+<p>这样的操作更加复合于传统的groupby子句的操作使用。</p>
+
+<p>范例：求出每个职位的总工资</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094920.png" alt="" /></p>
+
+<p>在整个聚合框架里面如果要引用每行的数据使用：“$字段名称”。</p>
+
+<p>范例：计算出每个职位的平均工资</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094942.png" alt="" /></p>
+
+<p>范例：求出最高与最低工资</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118094959.png" alt="" /></p>
+
+<p>以上的几个与SQL类似的操作计算就成功的实现了。</p>
+
+<p>范例：计算出每个职位的工资数据（数组显示）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095017.png" alt="" /></p>
+
+<p>范例：求出每个职位的人员</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095041.png" alt="" /></p>
+
+<p>使用“$push”的确可以将数据变为数组进行保存，但是有一个问题出现了，重复的内容也会进行保存，那么在MongoDB里面提供有取消重复的设置。</p>
+
+<p>范例：取消重复的数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095059.png" alt="" /></p>
+
+<p>默认情况下是将所有的数据都保存进去了，但是现在只希望可以保留第一个或者是最后一个。</p>
+
+<p>范例：保存第一个内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095118.png" alt="" /></p>
+
+<p>范例：保存最后一个内容</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095139.png" alt="" /></p>
+
+<p>虽然可以方便的实现分组处理，但是有一点需要注意，所有的分组数据是无序的，并且都是在内存之中完成的，所以不可能支持大数据量。</p>
+
+<p>7.5.2、$project</p>
+
+<p>可以利用“$project”来控制数据列的显示规则，那么可以执行的规则如下：</p>
+
+<p>|- 普通列（{成员 : 1 | true}）：表示要显示的内容；</p>
+
+<p>|- “_id”列（{&rdquo;_id&rdquo; : 0 | false}）：表示“_id”列是否显示；</p>
+
+<p>|- 条件过滤列（{成员 : 表达式}）：满足表达式之后的数据可以进行显示。</p>
+
+<p>范例：只显示name、job列，不显示“_id”列</p>
+
+<p>edd982952528e893e902555bc26c9922.png
+此时只有设置进去的列才可以被显示出来，而其它的列不能够被显示出来。实际上这就属于数据库的投影机制。</p>
+
+<p>实际上在进行数据投影的过程里面也支持四则运算：加法（“
+）
+、
+减
+法
+（
+subtract”）、乘法（“
+）
+、
+除
+法
+（
+divide”）、求模（$mod）。</p>
+
+<p>范例：观察四则运算</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095202.png" alt="" /></p>
+
+<p>除了四则运算之外也支持如下的各种运算符：</p>
+
+<p>·关系运算：大小比较（“
+）
+、
+等
+于
+（
+eq”）、大于（“
+）
+、
+大
+于
+等
+于
+（
+gte”）、小于（“
+）
+、
+小
+于
+等
+于
+（
+lte”）、不等于（“
+）
+、
+判
+断
+（
+ifNull”），这些返回的结果都是布尔型数据；</p>
+
+<p>·逻辑运算：与（“
+）
+、
+或
+（
+or”）、非（“$not”）；</p>
+
+<p>·字符串操作：连接（“
+）
+、
+截
+取
+（
+substr”）、转小写（“
+）
+、
+转
+大
+写
+（
+）
+、
+不
+区
+分
+大
+小
+写
+比
+较
+（
+strcasecmp”）。</p>
+
+<p>范例：找出所有工资大于等于2000的雇员姓名、年龄、工资</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095241.png" alt="" /></p>
+
+<p>范例：查询职位是manager的信息</p>
+
+<p>· MongoDB中的数据是区分大小写的；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095303.png" alt="" /></p>
+
+<p>范例：使用字符串截取</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095322.png" alt="" /></p>
+
+<p>利用“$project”实现的投影操作功能相当强大，所有可以出现的操作几乎都能够使用。</p>
+
+<p>7.5.3、$match</p>
+
+<p>“$match”是一个滤波操作，就是进行WHERE的过滤。</p>
+
+<p>范例：查询工资在2000 ~5000的雇员</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095344.png" alt="" /></p>
+
+<p>这个时候实现的代码严格来讲只是相当于“SELECT * FROM 表 WHERE
+条件”，属于所有的内容都进行了查询。</p>
+
+<p>范例：控制投影操作</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095406.png" alt="" /></p>
+
+<p>此时相当于实现了“SELECT字段 FROM &hellip; WHERE”语句结构。</p>
+
+<p>范例：继续分组</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095425.png" alt="" /></p>
+
+<p>通过一系列的演示可以总结一点：</p>
+
+<p>·“$project”：相当于SELECT子句；</p>
+
+<p>·“$match”：相当于WHERE子句；</p>
+
+<p>·“$group”：相当于GROUP BY子句。</p>
+
+<p>7.5.4、$sort</p>
+
+<p>使用“$sort”可以实现排序，设置1表示升序，设置-1表示降序。</p>
+
+<p>范例：实现排序</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095444.png" alt="" /></p>
+
+<p>范例：将所有的操作一起使用</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095507.png" alt="" /></p>
+
+<p>此时实现了降序排序，使用的是生成定义的别名。</p>
+
+<p>7.5.5、分页处理：
+、
+skip</p>
+
+<p>“$limit”：负责数据的取出个数；</p>
+
+<p>“$skip”：数据的跨过个数。</p>
+
+<p>范例：使用“$limit”设置取出的个数</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095528.png" alt="" /></p>
+
+<p>范例：跨过三行数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095550.png" alt="" /></p>
+
+<p>范例：综合应用</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095610.png" alt="" /></p>
+
+<p>只能够说现在的查询可以在实际的开发之中使用了。</p>
+
+<p>5.5.6、$unwind</p>
+
+<p>在查询数据的时候经常会返回数组信息，但是数组并不方便信息的浏览，所以提供有“$unwind”可以将数组数据变为独立的字符串内容。</p>
+
+<p>范例：添加一些信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095630.png" alt="" /></p>
+
+<p>范例：将信息进行转化</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095650.png" alt="" /></p>
+
+<p>此时相当于将数组中的数据变为了单行的数据。</p>
+
+<p>5.5.7、$geoNear</p>
+
+<p>使用“$geoNear”可以得到附近的坐标点。</p>
+
+<p>范例：准备测试数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095713.png" alt="" /></p>
+
+<p>范例：设置查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095753.png" alt="" />
+地理信息的检索必须存在有索引的支持。</p>
+
+<p>5.5.8、$out</p>
+
+<p>“$out”：利用此操作可以将查询结果输出到指定的集合里面。</p>
+
+<p>范例：将投影的结果输出到集合里</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095818.png" alt="" /></p>
+
+<p>这类的操作就相当于实现了最早的数据表的复制操作。</p>
+
+<p>8、深入操作</p>
+
+<p>8.1、固定集合</p>
+
+<p>所谓的固定集合指的是规定集合大小，如果要保存的内容已经超过了集合的长度，那么会采用LRU的算法（最近最少使用原则）将最早的数据移出，从而保存新的数据。</p>
+
+<p>默认情况下一个集合可以使用createCollection函数创建，或者使用增加数据后自动创建，但是如果要想使用固定集合，就必须明确的创建一个空集合。</p>
+
+<p>范例：创建一个空集合（固定集合）</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095910.png" alt="" /></p>
+
+<p>其中“capped
+:true”表示为一个固定集合，而“size:1024”指的是集合所占的空间容量（字节）、“max :
+5”最多只能够有五条记录。</p>
+
+<p>范例：向集合里面保存5条数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095926.png" alt="" /></p>
+
+<p>此时已经达到了集合的上限，那么继续保存新的内容。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118095945.png" alt="" /></p>
+
+<p>此时最早保留的数据已经消失了。实际上这种操作跟缓存机制是非常相似的，例如，在baidu上经常会出现一些搜索的关键词（热门），这些词都是会被不断替换的。</p>
+
+<p>8.2、GridFS</p>
+
+<p>在MongoDB里面支持大数据的存储（例如：图片、音乐、各种二进制数据），但是这个做法需要用户自己进行处理了，使用“mogofiles”命令完成。</p>
+
+<p>1、 利用命令行进入到所在的路径下；</p>
+
+<p>2、 将文件保存到文件库之中；
+<img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100015.png" alt="" /></p>
+
+<p>此时会向数据库里面写入要保存的二进制数据；</p>
+
+<p>3、 查看保存的文件；</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100035.png" alt="" /></p>
+
+<p>4、 在MongoDB里面有一个fs系统集合，这个集合默认保存在了test数据库下；</p>
+
+<p>范例：查看保存的信息</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100055.png" alt="" /></p>
+
+<p>5、 删除文件</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100115.png" alt="" /></p>
+
+<p>等于在mongoDB里面支持二进制数据的保存，但是存在的意义不大。</p>
+
+<p>9、用户管理</p>
+
+<p>在MongoDB里面默认情况下只要是进行连接都可以不使用用户名与密码，因为要想让其起作用，则必须具备以下两个条件：</p>
+
+<p>·条件一：服务器启动的时候打开授权认证；</p>
+
+<p>·条件二：需要配置用户名和密码。</p>
+
+<p>但是需要明确的是，如果要想配置用户名和密码一定是针对于一个数据库的，例如现在要创建的是mldn数据库的用户，那么就必须首先切换到mldn数据库上。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100138.png" alt="" /></p>
+
+<p>范例：执行用户的创建（hello、java）</p>
+
+<p>·任何的用户都必须具备有一个自己的操作角色，对于角色最基础的角色：read、readWrite。</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100159.png" alt="" /></p>
+
+<p>那么现在就表示已经成功的创建了hello用户。那么如果要想让此用户名起作用，则必须以授权的方式打开MongoDB的服务，修改MongoDB的启动文件。</p>
+
+<p>范例：新的启动配置文件</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100217.png" alt="" /></p>
+
+<p>此时增加了一个验证的启动模式，发现依然可以在不输入用户名和密码的前提下进行登录，并且也可以直接进行数据库的切换操作。但是在使用数据库集合的时候出现了错误提示。</p>
+
+<p>范例：登录数据库的时候使用用户名与密码</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100236.png" alt="" /></p>
+
+<p>此时就表示成功的实现了用户的登录操作。</p>
+
+<p>范例：修改密码</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100252.png" alt="" /></p>
+
+<p>如果要修改密码，那么就请关闭授权登录。</p>
+
+<p>10、Java执行Mongo操作</p>
+
+<p>既然已经强调了Mongo作为辅助数据库，所以来讲那么就必须清楚如何利用程序来进行MongoDB的操作。</p>
+
+<p>10.1、Mongo-Java-2.x</p>
+
+<p>下面通过几个程序代码来演示Mongo的数据库操作。</p>
+
+<p>范例：连接数据库</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100310.png" alt="" /></p>
+
+<p>此时数据库已经可以正常的进行连接操作了。当取得了MongoDB数据库的连接之后，那么就意味着可以进行集合操作了，例如：现在要保存一个deptcol的集合信息。</p>
+
+<p>范例：保存数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100336.png" alt="" /></p>
+
+<p>此时已经可以向集合里面成功的进行了数据的保存操作。</p>
+
+<p>范例：数据读取</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100403.png" alt="" /></p>
+
+<p>以上的列出的操作有一些遗憾，就是要进行全部数据的显示，这样的做法明显是不好的，可以使用分页。</p>
+
+<p>范例：使用分页处理</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100424.png" alt="" /></p>
+
+<p>但是针对于查询，往往都需要设置一些查询条件，所有的查询条件可以通过BasicDBObject类设置。</p>
+
+<p>范例：设置查询条件</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100440.png" alt="" /></p>
+
+<p>范例：设置范围查询—— in</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100458.png" alt="" /></p>
+
+<p>范例：执行模糊查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100516.png" alt="" /></p>
+
+<p>到此为止已经实现了数据的增加、查询等操作功能。</p>
+
+<p>范例：数据修改</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100535.png" alt="" /></p>
+
+<p>范例：多行数据的修改</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100556.png" alt="" /></p>
+
+<p>范例：删除数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100613.png" alt="" /></p>
+
+<p>这个时候基本的CRUD就完成了，强烈记住：只做这些功能。</p>
+
+<p>10.2、Mongo-Java-3.x</p>
+
+<p>Mongo 2.x的操作基本上流程都是固定的，但是在Mongo
+x里面这个类几乎就跟重写没什么区别了。</p>
+
+<p>在Mongo 2.x开发包里面只需要使用MogoClient就可以定义连接地址与端口号。</p>
+
+<p>范例：连接数据库</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100633.png" alt="" /></p>
+
+<p>范例：数据增加</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100652.png" alt="" /></p>
+
+<p>范例：查询全部数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100710.png" alt="" /></p>
+
+<p>范例：设置范围查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100730.png" alt="" /></p>
+
+<p>范例：模糊查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100851.png" alt="" /></p>
+
+<p>范例：分页显示</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100909.png" alt="" /></p>
+
+<p>范例：数据修改</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100925.png" alt="" /></p>
+
+<p>范例：删除数据</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118100944.png" alt="" /></p>
+
+<p>范例：统计查询</p>
+
+<p><img src="https://gitee.com/stormzhai/pics/raw/master/images/20211118101005.png" alt="" /></p>
+
+<p>MongoDB实际上是作为一个附属数据库存在，只有Node.JS把它作为正室，但是除了Node.JS之外，Mongo就是一个不能够单独使用的数据库，都需要与传统的关系型数据库匹配在一起使用。</p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">stormzhai</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+      2021-11-30
+      
+    </span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/">
+            <span class="next-text nav-default">mac iterm2 rzsz 配置</span>
+            <span class="prev-text nav-mobile">Next</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="http://github.com/stormzhai" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="http://stormzhai.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2021
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        stormzhai
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

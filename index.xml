@@ -6,10 +6,1843 @@
     <description>Recent content on stormzhai - Javaer, Gopher, OpenSource Fans, 程序员的思考与总结</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Dec 2019 16:54:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Nov 2021 12:33:18 +0800</lastBuildDate>
     
         <atom:link href="http://stormzhai.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MongoDB数据库［李兴华老师教学学习笔记］</title>
+      <link>http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 30 Nov 2021 12:33:18 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2021/2021-11-30-mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E6%95%99%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;1-mongodb简介-了解&#34;&gt;1、MongoDB简介（了解）&lt;/h3&gt;
+
+&lt;p&gt;MongoDB数据库是一种NOSQL数据库，NOSQL数据库不是这几年才有的，从数据库的初期发展就已经存在有了NOSQL数据库。数据库之中支持的SQL语句是由IBM开发出来的，并且最早就应用在了Oracle数据库，但是SQL语句的使用并不麻烦，就是几个简单的单词：SELECT、FROM、WHERE、GROUP
+BY、HAVING、ORDER
+BY。但是在这个时候有人开始反感于编写SQL操作。于是有一些人就开始提出一个理论——不要去使用SQL，于是最早的NoSQL概念产生了。可是后来的发展产生了一点变化，在90年代到2010年之间，世界上最流行的数据库依然是关系型数据库，并且围绕着关系型数据库开发出了大量的程序应用。后来又随着移动技术（云计算、大数据）的发展，很多公司并不愿意去使用大型的厂商数据库——
+Oracle、DB2，因为这些人已经习惯于使用MySQL数据库了。这些人发现在大数据以及云计算的环境下，数据存储受到了很大的挑战，那么后来就开始重新进行了NoSQL数据库的开发，但是经过长期的开发发现，NoSQL数据库依然不可能离开传统的关系型数据（NoSQL、Not
+OnlySQL）。&lt;/p&gt;
+
+&lt;p&gt;实际上在现实的开发之中一直存在一种神奇的问题：&lt;/p&gt;
+
+&lt;p&gt;·数据表→ JDBC读取→ POJO（VO、PO）→控制层转化为JSON数据→客户端。&lt;/p&gt;
+
+&lt;p&gt;可是这样的转换实在是太麻烦了，那么最好的做法是，直接有一个数据库就存放有要显示的JSON数据该有多好，那么就省略所有需要进行转换的过程。所以在实际的开发之中，往往除了关系型数据库之外还要提供有一个NoSQL数据库，其中NoSQL数据库负责数据的读取，因为直接保存的就是JSON（前提：MongoDB中的数据是排列好的组合数据）。&lt;/p&gt;
+
+&lt;p&gt;例如：现在要求显示出每个雇员的编号、姓名、职位、部门名称、部门位置、工资等级。传统的关系型数据库之中一定要存放大量的冗余数据，不合理。而有了NoSQL数据库之中，可以直接在业务层里面将数据交给NoSQL数据库保存，按照指定的结构进行存储。&lt;/p&gt;
+
+&lt;p&gt;在MongoDB数据库之中与Oracle数据库有如下的概念对应：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/mongo_learn_1.png&#34; alt=&#34;知识点串联成知识网络&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在整个行业之中，MongoDB数据库是发展最好的一个NoSQL数据库，因为它与Node.JS捆绑在一起了，也就是如果你要从事Node.JS的开发，那么一定要使用MongoDB，而Node.JS（基于JavaScript）在国内最成功的应用——
+taobao。&lt;/p&gt;
+
+&lt;p&gt;MongoDB之所以能够更好的发展也取决于：面向集合的存储过程、模式自由（无模式）、方便的进行数据的存储扩充、支持索引、支持短暂数据保留、具备完整的数据库状态监控、基于BSON应用。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-mongodb的安装与配置-重点&#34;&gt;2、MongoDB的安装与配置（重点）&lt;/h3&gt;
+
+&lt;p&gt;如果要想得到MongoDB数据库只需要登陆（www.mongodb.org）上就可以直接下载可用版本，最新的版本是0.x，但是这个版本变为了windows安装版（只是把原来的解压缩版变为了安装拷贝）。&lt;/p&gt;
+
+&lt;p&gt;将下载下来的MongoDB数据库直接进行安装。安装的时候需要选择好对应的操作系统，本次使用的是64位安装版。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117180943.png&#34; alt=&#34;安装版&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117181057.png&#34; alt=&#34;安装版&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;随后将MongonDB数据库保存在E盘目录下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117181225.png&#34; alt=&#34;数据库保存&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时MongoDB安装完成之后，严格来讲并不能够在windows下使用，需要为它配置path环境属性，配置目录：“E:\MongoDB\bin”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117181418.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果要想正常启动MongoDB数据库，那么必须建立一个文件夹，这个文件夹将保存所有的数据库的信息，现在将在MongoDB文件夹之中建立一个db的目录，并且在此目录下保存所有的数据文件。&lt;/p&gt;
+
+&lt;p&gt;MongoDB数据库的启动需要使用mongod.exe命令完成，启动的时候可以设置端口号，也可以不设置端口号。&lt;/p&gt;
+
+&lt;p&gt;·不设置端口号启动MongoDB服务：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117181457.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·设置端口号启动&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117181740.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果日后需要通过程序访问数据库的话，那么一定要设置端口号。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117182215.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当MongoDB服务启动之后，可以使用mongo命令连接数据库。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117182520.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询所有的数据库&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117182806.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时只存在有一个local的本地数据库，不过这个数据库不使用。&lt;/p&gt;
+
+&lt;p&gt;虽然以上的代码实现了数据库的启动与连接操作，但是从严格意义上来讲，以上的代码没有任何的用处，因为从实际的开发来讲，在MongoDB启动的时候需要设置一些相应参数：端口号、是否启用用户验证、数据文件的位置等等。&lt;/p&gt;
+
+&lt;p&gt;范例：在E:\MongoDB目录下建立一个文件“mongodb.conf”&lt;/p&gt;
+
+&lt;p&gt;·同时建立了一个保存日志信息的文件：log\mongodb.log；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117182847.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·随后重新启动MongonDB数据库服务：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117182923.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：连接数据库&lt;/p&gt;
+
+&lt;p&gt;此时服务器已经存在有指定的端口号了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183009.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用端口号启动在日后的程序开发部分是非常有用处的。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-mongodb的基础操作-重点&#34;&gt;3、MongoDB的基础操作（重点）&lt;/h3&gt;
+
+&lt;p&gt;在MongoDB数据库里面是存在有数据库的概念，但是没有模式（所有的信息都是按照文档保存的），保存数据的结构就是JSON结构，只不过在进行一些数据处理的时候才会使用到MongoDB自己的一些操作符。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-使用mldn数据库&#34;&gt;1、 使用mldn数据库：&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183142.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;实际上这个时候并不会创建数据库，只有在数据库里面保存集合数据之后才能够真正创建数据库。&lt;/p&gt;
+
+&lt;h4 id=&#34;2-创建一个集合-创建一个emp集合&#34;&gt;2、 创建一个集合——创建一个emp集合&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183311.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候mldn数据库才会真正的存在。&lt;/p&gt;
+
+&lt;h4 id=&#34;3-但是很多的时候如果按照以上的代码形式进行会觉得你不正常-因为正常人使用mongondb数据库集合操作的时候都是直接向里面保存一个数据&#34;&gt;3、但是很多的时候如果按照以上的代码形式进行会觉得你不正常，因为正常人使用MongonDB数据库集合操作的时候都是直接向里面保存一个数据。&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183355.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4、 查看所有集合：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183423.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;发现dept集合自动创建了。&lt;/p&gt;
+
+&lt;p&gt;5、 查看emp表的数据&lt;/p&gt;
+
+&lt;p&gt;·语法：db.集合名称.find 若干条件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183504.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从传统的数据表来看（集合就相当于表的结构），表的结构一旦定义就必须按照其定义的要求进行内容的编写，但是MongoDB不一样，它可以自己随意扩充数据。&lt;/p&gt;
+
+&lt;p&gt;6、 增加不规则的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183539.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时dept集合的内容可以由用户随便去定义，完全不用考虑其它的结构，那么实际上就必须明确一点了，在MongoDB数据库之中是绝对不可能存在有查看集合结构的操作。&lt;/p&gt;
+
+&lt;p&gt;7、 关于ID的问题&lt;/p&gt;
+
+&lt;p&gt;在MongoDB集合中的每一行记录都会自动的生成一个“&amp;rdquo;_id&amp;rdquo;
+:ObjectId”数据，这个数据组成是：“时间戳 + 机器码 +
+PID + 计数器”，这个ID的信息是MongonDB数据自己为用户生成的。&lt;/p&gt;
+
+&lt;p&gt;8、 查看单独的一个文档信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183611.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9、 删除数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183641.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10、更新数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183711.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;11、删除集合&lt;/p&gt;
+
+&lt;p&gt;·语法：db.集合名称.drop&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183743.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;12、删除数据库（删除当前所在的数据库）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183743.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;删除数据库的是删除当前所在的数据库，必须先切换到数据库后才可以删除。&lt;/p&gt;
+
+&lt;p&gt;4、数据操作（重点）&lt;/p&gt;
+
+&lt;p&gt;只要是数据库那么就绝对离不开最为核心的功能：CRUD，所以在MongoDB里面对于数据的操作也是有支持的，但是需要提醒的是，除了增加之外，其它的都很麻烦。&lt;/p&gt;
+
+&lt;p&gt;4.1、数据增加&lt;/p&gt;
+
+&lt;p&gt;使用“db.集合.insert”可以实现数据的增加操作。&lt;/p&gt;
+
+&lt;p&gt;范例：增加一个简单数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183911.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：保存数组&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117183945.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果要想保存多个数据，那么就使用数组。&lt;/p&gt;
+
+&lt;p&gt;范例：保存10000个数据？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果数据保存很多的情况下，列表时不会全部列出，它只会列出部分的内容。&lt;/p&gt;
+
+&lt;p&gt;4.2、数据查询&lt;/p&gt;
+
+&lt;p&gt;任何的数据库之中，数据的查询操作都是最为麻烦的，而在MongoDB数据库里面，对于查询的支持非常到位，包含有关系运算、逻辑运算、数组运算、正则运算等等。&lt;/p&gt;
+
+&lt;p&gt;首先对于数据的查询操作核心的语法：“db.集合名称.find
+查询条件设置显示的字段”。&lt;/p&gt;
+
+&lt;p&gt;范例：最简单的用法就是直接使用find函数完成查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184113.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：希望查询出url为“www.mldn.cn”的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184149.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;发现在进行数据查询的时候也是按照JSON的形式设置的相等关系。它的整个开发之中都不可能离开JSON数据。&lt;/p&gt;
+
+&lt;p&gt;对于设置的显示字段严格来讲就称为数据的投影操作，如果不需要显示的字段设置“0”，而需要显示的字段设置“1”。&lt;/p&gt;
+
+&lt;p&gt;范例：不想显示“_id”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184218.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;大部分的情况下，这种投影操作的意义不大。同时对于数据的查询也可以使用“pretty”函数进行漂亮显示。&lt;/p&gt;
+
+&lt;p&gt;范例：漂亮显示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184249.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;数据列多的时候一定可以看出华丽的显示效果。&lt;/p&gt;
+
+&lt;p&gt;范例：查询单个数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184339.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;利用以上的查询可以实现格式化的输出效果，前提：列的内容必须多。&lt;/p&gt;
+
+&lt;p&gt;4.2.1、关系运算&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面支持的关系查询操作：大于（）、小于（lt）、大于等于（）、小于等于（lte）、不等于（）、等于（eq）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。&lt;/p&gt;
+
+&lt;p&gt;范例：定义一个学生信息集合&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117184611.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询姓名是张三的学生信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185154.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询性别是男的学生信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185216.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询年龄大于19岁的学生&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185243.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询成绩大于等于60分的学生&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185311.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询姓名不是王五的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185340.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时与之前最大的区别就在于，在一个JSON结构里面需要定义其它的JSON结构，并且这种风格在日后通过程序进行操作的时候依然如此。&lt;/p&gt;
+
+&lt;p&gt;4.2.2、逻辑运算&lt;/p&gt;
+
+&lt;p&gt;逻辑运算主要就是三种类型：与（
+）
+、
+或
+（
+or）、非（
+、
+nor）。&lt;/p&gt;
+
+&lt;p&gt;范例：查询年龄在19 ~ 20岁的学生信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185403.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在进行逻辑运算的时候“and”的连接是最容易的，因为只需要利用“,”分割若干个条件就可以了。&lt;/p&gt;
+
+&lt;p&gt;范例：查询年龄不是19岁的学生&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185428.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询年龄大于19岁，或者成绩大于90分的学生信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185456.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：也可以进行或的求反操作&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185519.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;针对于或的操作可以实现一个求反的功能。&lt;/p&gt;
+
+&lt;p&gt;在这几个逻辑运算之中，与的连接最简单的，而或的连接需要为数据设置数组的过滤条件。&lt;/p&gt;
+
+&lt;p&gt;4.2.3、求模&lt;/p&gt;
+
+&lt;p&gt;模的运算使用“mod”来完成，语法“{mod : [数字,余数]}”。&lt;/p&gt;
+
+&lt;p&gt;范例：求模&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185545.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;利用求模计算可以编写一些数学的计算公式。&lt;/p&gt;
+
+&lt;p&gt;4.2.4、范围查询&lt;/p&gt;
+
+&lt;p&gt;只要是数据库，必须存在有“
+（
+在
+范
+围
+之
+中
+）
+、
+nin”（不在范围之中）。&lt;/p&gt;
+
+&lt;p&gt;范例：查询姓名是“张三”、“李四”、“王五”的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185611.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：不在范围&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185634.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在实际的工作之中，范围的操作很重要。&lt;/p&gt;
+
+&lt;p&gt;4.2.5、数组查询&lt;/p&gt;
+
+&lt;p&gt;首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。&lt;/p&gt;
+
+&lt;p&gt;范例：保存一部分数组内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185700.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：
+、
+size、
+、
+elemMatch。&lt;/p&gt;
+
+&lt;p&gt;范例：查询同时参加语文和数学课程的学生&lt;/p&gt;
+
+&lt;p&gt;·现在两个数组内容都需要保存，所以使用“{&amp;ldquo;$all&amp;rdquo;,[内容1,内容2,..]}”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185727.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在所有显示的学生信息里面包含语文和数学的内容，而如果差一个内容的不会显示。&lt;/p&gt;
+
+&lt;p&gt;虽然“$all”计算可以用于数组上，但是也可以用于一个数据的匹配上。&lt;/p&gt;
+
+&lt;p&gt;范例：查询学生地址是“海淀区”的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185752.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;既然在集合里面现在保存的是数组信息，那么数组就可以利用索引操作，使用“key.index”的方式来定义索引。&lt;/p&gt;
+
+&lt;p&gt;范例：查询数组中第二个内容（index= 1，索引下标从0开始）为数学的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185815.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：要求查询出只参加两门课程的学生&lt;/p&gt;
+
+&lt;p&gt;·使用“$size”来进行数量的控制。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117185840.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;发现在进行数据查询的时候只要是内容复合条件，数组的内容就全部显示出来了，但是现在希望可以控制数组的返回的数量，那么可以使用“$slice”进行控制。&lt;/p&gt;
+
+&lt;p&gt;范例：返回年龄为19岁所有学生的信息，但是要求只显示两门参加课程&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117190124.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在只取得了前两门的信息，那么也可以设置负数表示取出后两门的信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117190400.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;或者只是取出中间部分的信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211117190426.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在此时设置的两个数据里面第一个数据表示跳过的数据量，而第二个数据表示返回的数量。&lt;/p&gt;
+
+&lt;p&gt;4.2.6、嵌套集合运算&lt;/p&gt;
+
+&lt;p&gt;在MongoDB数据里面每一个集合数据可以继续保存其它的集合数据，例如：有些学生需要保存家长信息。&lt;/p&gt;
+
+&lt;p&gt;范例：增加数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091459.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时给出的内容是嵌套的集合，而这种集合的数据的判断只能够通过“$elemMatch”完成。&lt;/p&gt;
+
+&lt;p&gt;范例：查询出父母有人是局长的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091537.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于这种查询的时候条件比较麻烦，所以如果可能，尽量别搞这么复杂的数据结构组成。&lt;/p&gt;
+
+&lt;p&gt;4.2.7、判断某个字段是否存在&lt;/p&gt;
+
+&lt;p&gt;使用“$exists”可以判断某个字段是否存在，如果设置为true表示存在，如果设置为false就表示不存在。&lt;/p&gt;
+
+&lt;p&gt;范例：查询具有parents成员的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091609.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询不具有course成员的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091641.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以利用此类查询来进行一些不需要的数据的过滤。&lt;/p&gt;
+
+&lt;p&gt;4.2.8、条件过滤&lt;/p&gt;
+
+&lt;p&gt;实际上习惯于传统关系型数据库开发的我们对于数据的筛选，可能首先想到的一定是where子句，所以在MongoDB里面也提供有“$where”。&lt;/p&gt;
+
+&lt;p&gt;范例：使用where进行数据查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091710.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;对于“$where”是可以简化的，但是这类的操作是属于进行每一行的信息判断，实际上对于数据量较大的情况并不方便使用。实际上以上的代码严格来讲是属于编写一个操作的函数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091743.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上只是查询了一个判断，如果要想实现多个条件的判断，那么就需要使用and连接。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091809.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然这种形式的操作可以实现数据查询，但是最大的缺点是将在MongoDB里面保存的BSON数据变为了JavaScript的语法结构，这样的方式不方便使用数据库索引机制。&lt;/p&gt;
+
+&lt;p&gt;4.2.9、正则运算&lt;/p&gt;
+
+&lt;p&gt;如果要想实现模糊查询，那么必须使用正则表达式，而且正则表达式使用的是语言Perl兼容的正则表达式的形式。如果要想实现正则使用，则按照如下的定义格式：&lt;/p&gt;
+
+&lt;p&gt;·基础语法：{key : 正则标记}；&lt;/p&gt;
+
+&lt;p&gt;·完整语法：{key : {&amp;rdquo;
+正
+则
+标
+记
+options&amp;rdquo; : 选项}}。&lt;/p&gt;
+
+&lt;p&gt;|- 对于options主要是设置正则的信息查询的标记：&lt;/p&gt;
+
+&lt;p&gt;|- “i”：忽略字母大小写；&lt;/p&gt;
+
+&lt;p&gt;|- “m”多行查找；&lt;/p&gt;
+
+&lt;p&gt;|- “x”：空白字符串除了被转义的或在字符类中意外的完全被忽略；&lt;/p&gt;
+
+&lt;p&gt;|- “s”：匹配所有的字符（圆点、“.”），包括换行内容。&lt;/p&gt;
+
+&lt;p&gt;|-
+需要注意的是，如果是直接使用（javascript）那么只能够使用i和m，而“x”和“s”必须使用“$regex”。&lt;/p&gt;
+
+&lt;p&gt;范例：查询以“谷”开头的姓名&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091904.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询姓名有字母A&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091928.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果要执行模糊查询的操作，严格来讲只需要编写一个关键字就够了。&lt;/p&gt;
+
+&lt;p&gt;正则操作之中除了可以查询出单个字段的内容之外，也可以进行数组数据的查询。&lt;/p&gt;
+
+&lt;p&gt;范例：查询数组数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118091949.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;MongoDB中的正则符号和之前Java正则是有一些小小差别，不建议使用以前的一些标记，正则就将其应用在模糊数据查询上。&lt;/p&gt;
+
+&lt;p&gt;4.2.10、数据排序&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面数据的排序操作使用“sort”函数，在进行排序的时候可以有两个顺序：升序（1）、降序（-1）。&lt;/p&gt;
+
+&lt;p&gt;范例：数据排序&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092011.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是在进行排序的过程里面有一种方式称为自然排序，按照数据保存的先后顺序排序，使用“$natural”表示。&lt;/p&gt;
+
+&lt;p&gt;范例：自然排序&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092031.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在MongoDB数据库里面排序的操作相比较传统关系型数据库的设置要简单。&lt;/p&gt;
+
+&lt;p&gt;4.2.11、数据分页显示&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面的数据分页显示也是符合于大数据要求的操作函数：&lt;/p&gt;
+
+&lt;p&gt;· skip：表示跨过多少数据行；&lt;/p&gt;
+
+&lt;p&gt;· limit：取出的数据行的个数限制。&lt;/p&gt;
+
+&lt;p&gt;范例：分页显示（第一页，skip、limit）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092100.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：分页显示（第二页，skip、limit）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092133.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这两个分页的控制操作，就是在以后只要是存在有大数据的信息情况下都会使用它。&lt;/p&gt;
+
+&lt;p&gt;4.3、数据更新操作&lt;/p&gt;
+
+&lt;p&gt;对于MongoDB而言，数据的更新基本上是一件很麻烦的事情，如果在实际的工作之中，真的具有此类的操作支持，那么最好的做法，在MongoDB里面对于数据的更新操作提供了两类函数：save、update。&lt;/p&gt;
+
+&lt;p&gt;4.1、函数的基本使用&lt;/p&gt;
+
+&lt;p&gt;如果要修改数据最直接的使用函数就是update函数，但是这个函数的语法要求很麻烦：&lt;/p&gt;
+
+&lt;p&gt;·语法：db.集合.update
+更
+新
+条
+件
+新
+的
+对
+象
+数
+据
+（
+更
+新
+操
+作
+符
+）
+；&lt;/p&gt;
+
+&lt;p&gt;|-
+upsert：如果要更新的数据不存在，则增加一条新的内容（true为增加、false为不增加）；&lt;/p&gt;
+
+&lt;p&gt;|-
+multi：表示是否只更新满足条件的第一行记录，如果设置为false，只更新第一条，如果是true全更新。&lt;/p&gt;
+
+&lt;p&gt;范例：更新存在的数据——将年龄是19岁的人的成绩都更新为100分（此时会返回多条数据）&lt;/p&gt;
+
+&lt;p&gt;·只更新第一条数据：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092201.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·所有满足条件的数据都更新&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092224.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：更新不存在的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092243.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于没有年龄是30岁的学生信息，所以此时相当于进行了数据的创建。&lt;/p&gt;
+
+&lt;p&gt;那么除了update函数之外，还提供有一个save函数，这个函数的功能与更新不存在的内容相似。&lt;/p&gt;
+
+&lt;p&gt;范例：使用save操作&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092305.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于此时对应的id数据存在了，所以就变为了更新操作。但是如果要保存的数据不存在（不能保存有“_id”），那么就变为了增加操作。&lt;/p&gt;
+
+&lt;p&gt;4.2、修改器&lt;/p&gt;
+
+&lt;p&gt;对MongoDB数据库而言，数据的修改会牵扯到内容的变更、结构的变更（包含有数组），所以在进行MongoDB设计的时候就提供有一系列的修改器的应用，那么像之前使用的“$set”就是一个修改器。&lt;/p&gt;
+
+&lt;p&gt;1、 $inc：主要针对于一个数字字段，增加某个数字字段的数据内容；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$inc&amp;rdquo; : {&amp;ldquo;成员&amp;rdquo; : 内容}}&lt;/p&gt;
+
+&lt;p&gt;范例：将所有年龄为19岁的学生成绩一律减少30分&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092325.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、 $set：进行内容的重新设置；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$set&amp;rdquo; : {&amp;ldquo;成员&amp;rdquo; : &amp;ldquo;新内容&amp;rdquo;}}；&lt;/p&gt;
+
+&lt;p&gt;范例：将年龄是20岁的人的成绩修改为89&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092354.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3、 $unset：删除某个成员的内容；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$unset&amp;rdquo; : {&amp;ldquo;成员&amp;rdquo; : 1}}&lt;/p&gt;
+
+&lt;p&gt;范例：删除“张三”的年龄与成绩信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092421.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;执行之后指定的成员内容就消失了。&lt;/p&gt;
+
+&lt;p&gt;4、 $push：相当于将内容追加到指定的成员之中（基本上是数组）；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;push&amp;rdquo; : {成员 : value}}&lt;/p&gt;
+
+&lt;p&gt;范例：向“李四”添加课程信息（此时张三信息下没有course信息）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092448.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：向“谷大神 - E”里面的课程追加一个“美术”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092509.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;就是进行数组数据的添加操作使用的，如果没有数组则进行一个新的数组的创建，如果有则进行内容的追加。&lt;/p&gt;
+
+&lt;p&gt;5、
+：
+与
+push”是类似的，可以一次追加多个内容到数组里面；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;pushAll&amp;rdquo; : {成员 : 数组内容}}&lt;/p&gt;
+
+&lt;p&gt;范例：向“王五”的信息里面添加多个课程内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092529.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;6、 $addToSet：向数组里面增加一个新的内容，只有这个内容不存在的时候才会增加；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$addToSet&amp;rdquo; : {成员 : 内容}}&lt;/p&gt;
+
+&lt;p&gt;范例：向王五的信息增加新的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092552.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时会判断要增加的内容在数组里面是否已经存在了，如果不存在则向数组之中追加内容，如果存在了则不做任何的修改操作。&lt;/p&gt;
+
+&lt;p&gt;7、 $pop：删除数组内的数据；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$pop&amp;rdquo; : {成员 :
+内容}}，内容如果设置为-1表示删除第一个，如果是1表示删除最后一个；&lt;/p&gt;
+
+&lt;p&gt;范例：删除王五的第一个课程&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092616.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：删除王五的最后一个课程&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092638.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;8、 $pull：从数组内删除一个指定内容的数据&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$pull&amp;rdquo; : {成员 : 数据}}，进行数据比对的，如果是此数据则删除；&lt;/p&gt;
+
+&lt;p&gt;范例：删除王五学生的音乐课程信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092659.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;9、 $pullAll：一次性删除多个内容；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$pull&amp;rdquo; : {成员 : [数据, 数据,&amp;hellip;]}}&lt;/p&gt;
+
+&lt;p&gt;范例：删除“谷大神 - A”中的三门课程&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092717.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;10、 $rename：为成员名称重命名；&lt;/p&gt;
+
+&lt;p&gt;·语法：{&amp;ldquo;$rename&amp;rdquo; : {旧的成员名称 : 新的成员名称}}；&lt;/p&gt;
+
+&lt;p&gt;范例：将“张三”name成员名称修改为“姓名”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092738.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在整个MongoDB数据库里面，提供的修改器的支持很到位。&lt;/p&gt;
+
+&lt;p&gt;4.4、删除数据&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面数据的删除实际上并不复杂，只需要使用“remove”函数就可以了。&lt;/p&gt;
+
+&lt;p&gt;但是在这个函数是有两个可选项：&lt;/p&gt;
+
+&lt;p&gt;·删除条件：满足条件的数据被删除；&lt;/p&gt;
+
+&lt;p&gt;·是否只删除一个数据，如果设置为true或者是1表示只删除一个。&lt;/p&gt;
+
+&lt;p&gt;范例：清空infos集合中的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092804.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：删除所有姓名里面带有“谷”的信息，默认情况下会全部删除&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092822.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：删除姓名带有“高”的信息，要求只删除一个&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092839.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;删除操作里面依然需要使用限定查询的相关操作内容。&lt;/p&gt;
+
+&lt;p&gt;5、游标（重点）&lt;/p&gt;
+
+&lt;p&gt;所谓的游标就是指的数据可以一行行的进行操作，非常类似于ResultSet数据处理。在MongoDB数据库里面对于游标的控制非常的简单，只需要使用find函数就可以返回游标了。对于返回的游标如果要想进行操作，使用两个函数：&lt;/p&gt;
+
+&lt;p&gt;·判断是否有下一行数据：hasNext；&lt;/p&gt;
+
+&lt;p&gt;·取出当前数据：next；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092901.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上是游标的操作形式，但是实际上不可能这么去用，因为必须利用循环才能够输出内容。&lt;/p&gt;
+
+&lt;p&gt;范例：编写具体的操作代码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092924.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;相当于每一个数据都单独拿出来进行逐行的控制。当游标数据取出来之后，实际上每行数据返回的都是一个Object型的内容，那么如果需要将数据按照json的形式出现，则可以使用printjson函数完成。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118092946.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在所有的已知数据库，只有MongoDB的游标操作是最简单，最直观的。&lt;/p&gt;
+
+&lt;p&gt;6、索引（重点）&lt;/p&gt;
+
+&lt;p&gt;在任何的数据库之中，索引都是一种提升数据库检索性能的手段，这一点在MongoDB数据库之中同样是存在的，在MongoDB数据库里面依然会存在有两种的索引创建：是自动创建的，另外一种索引是手工创建的。&lt;/p&gt;
+
+&lt;p&gt;范例：重新准备一个新的简单集合&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093008.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时在students集合上并没有去设置任何的索引，那么下面通过getIndexes函数来观察在students集合里面已经存在的索引内容。&lt;/p&gt;
+
+&lt;p&gt;范例：查询默认状态下的students集合的索引内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093029.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在发现会存在有一个“_id”列的索引内容。但是如果要想创建自己的索引，则可以使用如下的语法：&lt;/p&gt;
+
+&lt;p&gt;·索引创建：db.集合名称.ensureIndex
+列
+|- 设置的1表示索引将按照升序的方式进行排列，如果使用降序设置“-1”。&lt;/p&gt;
+
+&lt;p&gt;范例：创建一个索引，在age字段上设置一个降序索引；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093127.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时并没有设置索引的名字，所以名字是自动命名的。命名规范：“字段名称_索引的排序模式”。&lt;/p&gt;
+
+&lt;p&gt;范例：针对于当前的age字段上的索引做一个分析&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093144.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时的查询使用了索引的技术，但是下面再来观察一个查询，不使用索引字段。&lt;/p&gt;
+
+&lt;p&gt;范例：针对于score字段上设置查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093208.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时在score字段上并没有设置索引，所以当前的索引形式就变为了全集合扫描的模式。&lt;/p&gt;
+
+&lt;p&gt;但是如果说，现在换一种形式，年龄和成绩一起执行判断查询？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093229.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候虽然age字段上存在有索引，但是一个明显的问题是，由于score字段上没有索引，所以依然使用的是全表扫描操作，那么为了解决此时的问题，可以使用一个复合索引。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093249.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：默认使用索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093307.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是如果换到了条件之中：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093327.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在发现并没有使用索引，所以这个时候看能否强制使用一次索引。hint函数为强制使用索引操作。&lt;/p&gt;
+
+&lt;p&gt;范例：强制使用索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093346.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果正常来讲，这个代码根本就不可能调用默认的索引执行，但是我们觉得不好，所以需要使用hint函数来强制MongoDB告诉你必须使用一次索引，由于此时在age和score两个字段上已经设置了复合索引，那么现在使用的就是默认的复合索引。&lt;/p&gt;
+
+&lt;p&gt;但是如果在一个集合里面设置了过多的索引，实际上会导致性能下降，那么就可以删除索引。&lt;/p&gt;
+
+&lt;p&gt;范例：删除一个索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093406.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可是如果只是一个一个删除索引也会很麻烦，所以提供有删除全部索引的操作。&lt;/p&gt;
+
+&lt;p&gt;范例：删除全部索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093426.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所谓的删除全部索引指的就是非“_id”的索引，所有的自定义索引。&lt;/p&gt;
+
+&lt;p&gt;6.1、唯一索引&lt;/p&gt;
+
+&lt;p&gt;唯一索引的主要目的是用在某一个字段上，使该字段的内容不重复。&lt;/p&gt;
+
+&lt;p&gt;范例：创建唯一索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093447.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在name字段上的内容绝对不允许重复。&lt;/p&gt;
+
+&lt;p&gt;范例：在students集合里面增加重复的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093507.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时除了name字段上的内容之外，发现所有的数据都不一样，但是由于在name字段上设置了唯一索引，所以整个程序里面如果增加了重复内容，那么会出现以下的错误提示信息：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093526.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;唯一索引能够保证指定字段上的数据不重复。&lt;/p&gt;
+
+&lt;p&gt;6.2、过期索引&lt;/p&gt;
+
+&lt;p&gt;在一些程序站点会出现若干秒之后信息被删除的情况，例如：手机信息验证码，那么在MongoDB里面就可以轻松的实现过期索引，但是这个时间往往不怎么准确。&lt;/p&gt;
+
+&lt;p&gt;范例：设置过期索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093549.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置索引在10秒后过期。&lt;/p&gt;
+
+&lt;p&gt;范例：在一个phones集合里面设置过期索引&lt;/p&gt;
+
+&lt;p&gt;如果要想实现过期索引，需要保存一个时间信息；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093615.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;等到10秒以后（永远不会那么准确）所保存的数据就会消失。这样的特性在进行一些临时数据保存的时候非常有帮助，最早如果没有MongoDB这种特性，而只是使用最简单的关系型数据库开发，那么是非常麻烦的。&lt;/p&gt;
+
+&lt;p&gt;6.3、全文索引&lt;/p&gt;
+
+&lt;p&gt;在一些信息管理平台上经常需要进行信息模糊查询，最早的时候是利用了某个字段上实现的模糊查询，但是这个时候返回的信息并不会很准确，因为只能够查A字段或者是B字段，而在MongoDB里面实现了非常简单的全文检索。&lt;/p&gt;
+
+&lt;p&gt;范例：定义一个新的集合&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093638.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：设置全文检索&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093702.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：实现数据的模糊查询&lt;/p&gt;
+
+&lt;p&gt;如果要想表示出全文检索，则使用“
+判
+断
+符
+，
+而
+要
+想
+进
+行
+数
+据
+的
+查
+询
+则
+使
+用
+search”运算符：&lt;/p&gt;
+
+&lt;p&gt;|- 查询指定关键字：{&amp;ldquo;$search&amp;rdquo; : &amp;ldquo;查询关键字&amp;rdquo;}；&lt;/p&gt;
+
+&lt;p&gt;|- 查询多个关键字（或关系）：{&amp;ldquo;$search&amp;rdquo; : &amp;ldquo;查询关键字查询关键字 &amp;hellip;&amp;rdquo;}；&lt;/p&gt;
+
+&lt;p&gt;|- 查询多个关键字（与关系）：{&amp;ldquo;$search&amp;rdquo; : &amp;ldquo;\&amp;ldquo;查询关键字\&amp;rdquo;
+\&amp;ldquo;查询关键字\&amp;ldquo;&amp;hellip;&amp;rdquo;}&lt;/p&gt;
+
+&lt;p&gt;|- 查询多个关键字（排除某一个）：{&amp;ldquo;$search&amp;rdquo; : &amp;ldquo;查询关键字查询关键字 &amp;hellip;
+-排除关键字&amp;rdquo;}&lt;/p&gt;
+
+&lt;p&gt;范例：查询单个内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093725.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：包含有“gry”与“sfq”的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093745.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：同时包含有“mldn”与“lxh”的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093808.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：包含有“mldn”但是没有“gyh”的内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093827.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是在进行全文检索操作的时候还可以使用相似度的打分来判断检索成果。&lt;/p&gt;
+
+&lt;p&gt;范例：为结果打分&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093845.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;按照打分的成绩进行排列，实际上就可以实现更加准确的信息搜索。&lt;/p&gt;
+
+&lt;p&gt;但是在这里面还有一个小问题，如果一个集合的字段太多了，那么每一个字段都分别设置全文检索麻烦点，所以简单一些，可以为所有的字段设置全文检索。&lt;/p&gt;
+
+&lt;p&gt;范例：为所有字段设置全文检索&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118101056.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是一种最简单的设置全文索引的方式，但是尽可能别名，一个字：慢。&lt;/p&gt;
+
+&lt;p&gt;6.4、地理信息索引&lt;/p&gt;
+
+&lt;p&gt;地理信息索引分为两类：2D平面索引，另外就是2DSphere球面索引。在2D索引里面基本上能够保存的信息都是坐标，而且坐标保存的就是经纬度坐标。&lt;/p&gt;
+
+&lt;p&gt;范例：定义一个商铺的集合&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093906.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：为shop的集合定义2D索引&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093926.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候shop集合就可以实现坐标位置的查询了，而要进行查询有两种查询方式：&lt;/p&gt;
+
+&lt;p&gt;·“$near”查询，查询距离某个点最近的坐标点；&lt;/p&gt;
+
+&lt;p&gt;·“$geoWithin”查询：查询某个形状内的点；&lt;/p&gt;
+
+&lt;p&gt;范例：假设我的现在的坐标是：[11,11]&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118093946.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是如果执行了以上的查询，实际上会将数据集合里面的前100个点的信息都返回来了，可是太远了，设置一个距离范围——
+5个点内的。&lt;/p&gt;
+
+&lt;p&gt;范例：设置查询距离范围&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094029.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是需要注意一点，在2D索引里面虽然支持最大距离，但是不支持最小距离。&lt;/p&gt;
+
+&lt;p&gt;但是也可以设置一个查询的范围，使用“$geoWithin”查询，而可以设置的范围：&lt;/p&gt;
+
+&lt;p&gt;·矩形范围（box）：{&amp;ldquo;box&amp;rdquo;:[[x1,y1],[x2,y2]]}；&lt;/p&gt;
+
+&lt;p&gt;·圆形范围（center）：{&amp;ldquo;center&amp;rdquo; : [[x1,y1],r]}；&lt;/p&gt;
+
+&lt;p&gt;·多边型（polygon）：{&amp;ldquo;polygon&amp;rdquo; :[[x1,y1],x2,y2 , &amp;hellip;]}&lt;/p&gt;
+
+&lt;p&gt;范例：查询矩形&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094051.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询圆形&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094110.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在MongoDB数据库里面，除了一些支持的操作函数之外，还有一个重要的命令：runCommand，这个函数可以执行所有的特定的MongoDB命令。&lt;/p&gt;
+
+&lt;p&gt;范例：利用runCommand实现信息查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094129.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这类的命令可以说是MongoDB之中最为基础的命令。&lt;/p&gt;
+
+&lt;p&gt;7、聚合（重点）&lt;/p&gt;
+
+&lt;p&gt;MongoDB的产生背景是在大数据环境，所谓的大数据实际上也就是进行的信息收集汇总。那么就必须存在有信息的统计操作，而这样的统计操作就称为聚合（直白：分组统计就是一种聚合操作）。&lt;/p&gt;
+
+&lt;p&gt;7.1、取得集合的数据量&lt;/p&gt;
+
+&lt;p&gt;对于集合的数据量而言，在MongoDB里面直接使用count函数就可以完成了。&lt;/p&gt;
+
+&lt;p&gt;范例：统计students表中的数据量&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094153.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：模糊查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094216.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在进行信息查询的时候，不设置条件永远要比设置条件的查询快很多，也就是说在之前的代码编写里面不管是查询全部还是模糊查询，实际上最终都使用的模糊查询一种（没有设置关键字）。&lt;/p&gt;
+
+&lt;p&gt;7.2、消除重复数据&lt;/p&gt;
+
+&lt;p&gt;在学习SQL的时候对于重复的数据可以使用“DISTINCT”，那么这一操作在MongoDB之中依然支持。&lt;/p&gt;
+
+&lt;p&gt;范例：查询所有name的信息&lt;/p&gt;
+
+&lt;p&gt;·本次的操作没有直接的函数支持，只能够利用runCommand函数。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094237.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时实现了对于name数据的重复值的筛选。&lt;/p&gt;
+
+&lt;p&gt;7.3、group操作&lt;/p&gt;
+
+&lt;p&gt;使用“group”操作可以实现数据的分组操作，在MongoDB里面会将集合一句指定的key的不同进行分组操作，并且每一个组都会产生一个处理的文档结果。&lt;/p&gt;
+
+&lt;p&gt;范例：查询所有年龄大于等于19岁的学生信息，并且按照年龄分组&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094302.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上的操作代码里面实现的就属于一种MapReduce，但是这样只是根据传统的数据库的设计思路，实现了一个所谓的分组操作，但是这个分组操作的最终结果是有限的。&lt;/p&gt;
+
+&lt;p&gt;7.4、MapReduce&lt;/p&gt;
+
+&lt;p&gt;MapReduce是整个大数据的精髓所在（实际中别用），所谓的MapReduce就是分为两步处理数据：&lt;/p&gt;
+
+&lt;p&gt;· Map：将数据分别取出；&lt;/p&gt;
+
+&lt;p&gt;· Reduce：负责数据的最后的处理。&lt;/p&gt;
+
+&lt;p&gt;可是要想在MongoDB里面实现MapReduce处理，那么复杂度是相当高的。&lt;/p&gt;
+
+&lt;p&gt;范例：建立一组雇员数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094329.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用MapReduce操作最终会将处理结果保存在一个单独的集合里面，而最终的处理效果如下。&lt;/p&gt;
+
+&lt;p&gt;范例：按照职位分组，取得每个职位的人名&lt;/p&gt;
+
+&lt;p&gt;·编写分组的定义：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094347.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·第二步：编写reduce操作；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094408.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·第三步：针对于MapReduce处理完成的数据实际上也可以执行一个最后处理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094427.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;·进行操作的整合：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094448.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在执行之后，所有的处理结果都保存在了“t_job_emp”集合里面。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094815.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：统计出各性别的人数、平均工资、最低工资、雇员姓名&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094833.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然大数据的时代提供有最强悍的MapReduce支持，但是从现实的开发来讲，真的不可能使用起来。&lt;/p&gt;
+
+&lt;p&gt;7.5、聚合框架（核心）&lt;/p&gt;
+
+&lt;p&gt;MapReduce功能强大，但是它的复杂度和功能一样强大，那么很多时候我们需要MapReduce的功能，可是又不想把代码写的太复杂，所以从Mongo
+2.x版本之后开始引入了聚合框架并且提供了聚合函数：aggregate。&lt;/p&gt;
+
+&lt;p&gt;7.5.1、$group&lt;/p&gt;
+
+&lt;p&gt;group主要进行分组的数据操作。&lt;/p&gt;
+
+&lt;p&gt;范例：实现聚合查询的功能——求出每个职位的雇员人数&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094857.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这样的操作更加复合于传统的groupby子句的操作使用。&lt;/p&gt;
+
+&lt;p&gt;范例：求出每个职位的总工资&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094920.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在整个聚合框架里面如果要引用每行的数据使用：“$字段名称”。&lt;/p&gt;
+
+&lt;p&gt;范例：计算出每个职位的平均工资&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094942.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：求出最高与最低工资&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118094959.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上的几个与SQL类似的操作计算就成功的实现了。&lt;/p&gt;
+
+&lt;p&gt;范例：计算出每个职位的工资数据（数组显示）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095017.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：求出每个职位的人员&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095041.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;使用“$push”的确可以将数据变为数组进行保存，但是有一个问题出现了，重复的内容也会进行保存，那么在MongoDB里面提供有取消重复的设置。&lt;/p&gt;
+
+&lt;p&gt;范例：取消重复的数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095059.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;默认情况下是将所有的数据都保存进去了，但是现在只希望可以保留第一个或者是最后一个。&lt;/p&gt;
+
+&lt;p&gt;范例：保存第一个内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095118.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：保存最后一个内容&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095139.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;虽然可以方便的实现分组处理，但是有一点需要注意，所有的分组数据是无序的，并且都是在内存之中完成的，所以不可能支持大数据量。&lt;/p&gt;
+
+&lt;p&gt;7.5.2、$project&lt;/p&gt;
+
+&lt;p&gt;可以利用“$project”来控制数据列的显示规则，那么可以执行的规则如下：&lt;/p&gt;
+
+&lt;p&gt;|- 普通列（{成员 : 1 | true}）：表示要显示的内容；&lt;/p&gt;
+
+&lt;p&gt;|- “_id”列（{&amp;rdquo;_id&amp;rdquo; : 0 | false}）：表示“_id”列是否显示；&lt;/p&gt;
+
+&lt;p&gt;|- 条件过滤列（{成员 : 表达式}）：满足表达式之后的数据可以进行显示。&lt;/p&gt;
+
+&lt;p&gt;范例：只显示name、job列，不显示“_id”列&lt;/p&gt;
+
+&lt;p&gt;edd982952528e893e902555bc26c9922.png
+此时只有设置进去的列才可以被显示出来，而其它的列不能够被显示出来。实际上这就属于数据库的投影机制。&lt;/p&gt;
+
+&lt;p&gt;实际上在进行数据投影的过程里面也支持四则运算：加法（“
+）
+、
+减
+法
+（
+subtract”）、乘法（“
+）
+、
+除
+法
+（
+divide”）、求模（$mod）。&lt;/p&gt;
+
+&lt;p&gt;范例：观察四则运算&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095202.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;除了四则运算之外也支持如下的各种运算符：&lt;/p&gt;
+
+&lt;p&gt;·关系运算：大小比较（“
+）
+、
+等
+于
+（
+eq”）、大于（“
+）
+、
+大
+于
+等
+于
+（
+gte”）、小于（“
+）
+、
+小
+于
+等
+于
+（
+lte”）、不等于（“
+）
+、
+判
+断
+（
+ifNull”），这些返回的结果都是布尔型数据；&lt;/p&gt;
+
+&lt;p&gt;·逻辑运算：与（“
+）
+、
+或
+（
+or”）、非（“$not”）；&lt;/p&gt;
+
+&lt;p&gt;·字符串操作：连接（“
+）
+、
+截
+取
+（
+substr”）、转小写（“
+）
+、
+转
+大
+写
+（
+）
+、
+不
+区
+分
+大
+小
+写
+比
+较
+（
+strcasecmp”）。&lt;/p&gt;
+
+&lt;p&gt;范例：找出所有工资大于等于2000的雇员姓名、年龄、工资&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095241.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询职位是manager的信息&lt;/p&gt;
+
+&lt;p&gt;· MongoDB中的数据是区分大小写的；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095303.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：使用字符串截取&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095322.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;利用“$project”实现的投影操作功能相当强大，所有可以出现的操作几乎都能够使用。&lt;/p&gt;
+
+&lt;p&gt;7.5.3、$match&lt;/p&gt;
+
+&lt;p&gt;“$match”是一个滤波操作，就是进行WHERE的过滤。&lt;/p&gt;
+
+&lt;p&gt;范例：查询工资在2000 ~5000的雇员&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095344.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候实现的代码严格来讲只是相当于“SELECT * FROM 表 WHERE
+条件”，属于所有的内容都进行了查询。&lt;/p&gt;
+
+&lt;p&gt;范例：控制投影操作&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095406.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时相当于实现了“SELECT字段 FROM &amp;hellip; WHERE”语句结构。&lt;/p&gt;
+
+&lt;p&gt;范例：继续分组&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095425.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过一系列的演示可以总结一点：&lt;/p&gt;
+
+&lt;p&gt;·“$project”：相当于SELECT子句；&lt;/p&gt;
+
+&lt;p&gt;·“$match”：相当于WHERE子句；&lt;/p&gt;
+
+&lt;p&gt;·“$group”：相当于GROUP BY子句。&lt;/p&gt;
+
+&lt;p&gt;7.5.4、$sort&lt;/p&gt;
+
+&lt;p&gt;使用“$sort”可以实现排序，设置1表示升序，设置-1表示降序。&lt;/p&gt;
+
+&lt;p&gt;范例：实现排序&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095444.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：将所有的操作一起使用&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095507.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时实现了降序排序，使用的是生成定义的别名。&lt;/p&gt;
+
+&lt;p&gt;7.5.5、分页处理：
+、
+skip&lt;/p&gt;
+
+&lt;p&gt;“$limit”：负责数据的取出个数；&lt;/p&gt;
+
+&lt;p&gt;“$skip”：数据的跨过个数。&lt;/p&gt;
+
+&lt;p&gt;范例：使用“$limit”设置取出的个数&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095528.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：跨过三行数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095550.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：综合应用&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095610.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;只能够说现在的查询可以在实际的开发之中使用了。&lt;/p&gt;
+
+&lt;p&gt;5.5.6、$unwind&lt;/p&gt;
+
+&lt;p&gt;在查询数据的时候经常会返回数组信息，但是数组并不方便信息的浏览，所以提供有“$unwind”可以将数组数据变为独立的字符串内容。&lt;/p&gt;
+
+&lt;p&gt;范例：添加一些信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095630.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：将信息进行转化&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095650.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时相当于将数组中的数据变为了单行的数据。&lt;/p&gt;
+
+&lt;p&gt;5.5.7、$geoNear&lt;/p&gt;
+
+&lt;p&gt;使用“$geoNear”可以得到附近的坐标点。&lt;/p&gt;
+
+&lt;p&gt;范例：准备测试数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095713.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：设置查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095753.png&#34; alt=&#34;&#34; /&gt;
+地理信息的检索必须存在有索引的支持。&lt;/p&gt;
+
+&lt;p&gt;5.5.8、$out&lt;/p&gt;
+
+&lt;p&gt;“$out”：利用此操作可以将查询结果输出到指定的集合里面。&lt;/p&gt;
+
+&lt;p&gt;范例：将投影的结果输出到集合里&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095818.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这类的操作就相当于实现了最早的数据表的复制操作。&lt;/p&gt;
+
+&lt;p&gt;8、深入操作&lt;/p&gt;
+
+&lt;p&gt;8.1、固定集合&lt;/p&gt;
+
+&lt;p&gt;所谓的固定集合指的是规定集合大小，如果要保存的内容已经超过了集合的长度，那么会采用LRU的算法（最近最少使用原则）将最早的数据移出，从而保存新的数据。&lt;/p&gt;
+
+&lt;p&gt;默认情况下一个集合可以使用createCollection函数创建，或者使用增加数据后自动创建，但是如果要想使用固定集合，就必须明确的创建一个空集合。&lt;/p&gt;
+
+&lt;p&gt;范例：创建一个空集合（固定集合）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095910.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中“capped
+:true”表示为一个固定集合，而“size:1024”指的是集合所占的空间容量（字节）、“max :
+5”最多只能够有五条记录。&lt;/p&gt;
+
+&lt;p&gt;范例：向集合里面保存5条数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095926.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时已经达到了集合的上限，那么继续保存新的内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118095945.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时最早保留的数据已经消失了。实际上这种操作跟缓存机制是非常相似的，例如，在baidu上经常会出现一些搜索的关键词（热门），这些词都是会被不断替换的。&lt;/p&gt;
+
+&lt;p&gt;8.2、GridFS&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面支持大数据的存储（例如：图片、音乐、各种二进制数据），但是这个做法需要用户自己进行处理了，使用“mogofiles”命令完成。&lt;/p&gt;
+
+&lt;p&gt;1、 利用命令行进入到所在的路径下；&lt;/p&gt;
+
+&lt;p&gt;2、 将文件保存到文件库之中；
+&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时会向数据库里面写入要保存的二进制数据；&lt;/p&gt;
+
+&lt;p&gt;3、 查看保存的文件；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100035.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4、 在MongoDB里面有一个fs系统集合，这个集合默认保存在了test数据库下；&lt;/p&gt;
+
+&lt;p&gt;范例：查看保存的信息&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100055.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;5、 删除文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100115.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;等于在mongoDB里面支持二进制数据的保存，但是存在的意义不大。&lt;/p&gt;
+
+&lt;p&gt;9、用户管理&lt;/p&gt;
+
+&lt;p&gt;在MongoDB里面默认情况下只要是进行连接都可以不使用用户名与密码，因为要想让其起作用，则必须具备以下两个条件：&lt;/p&gt;
+
+&lt;p&gt;·条件一：服务器启动的时候打开授权认证；&lt;/p&gt;
+
+&lt;p&gt;·条件二：需要配置用户名和密码。&lt;/p&gt;
+
+&lt;p&gt;但是需要明确的是，如果要想配置用户名和密码一定是针对于一个数据库的，例如现在要创建的是mldn数据库的用户，那么就必须首先切换到mldn数据库上。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100138.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：执行用户的创建（hello、java）&lt;/p&gt;
+
+&lt;p&gt;·任何的用户都必须具备有一个自己的操作角色，对于角色最基础的角色：read、readWrite。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100159.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么现在就表示已经成功的创建了hello用户。那么如果要想让此用户名起作用，则必须以授权的方式打开MongoDB的服务，修改MongoDB的启动文件。&lt;/p&gt;
+
+&lt;p&gt;范例：新的启动配置文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100217.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时增加了一个验证的启动模式，发现依然可以在不输入用户名和密码的前提下进行登录，并且也可以直接进行数据库的切换操作。但是在使用数据库集合的时候出现了错误提示。&lt;/p&gt;
+
+&lt;p&gt;范例：登录数据库的时候使用用户名与密码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100236.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时就表示成功的实现了用户的登录操作。&lt;/p&gt;
+
+&lt;p&gt;范例：修改密码&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100252.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果要修改密码，那么就请关闭授权登录。&lt;/p&gt;
+
+&lt;p&gt;10、Java执行Mongo操作&lt;/p&gt;
+
+&lt;p&gt;既然已经强调了Mongo作为辅助数据库，所以来讲那么就必须清楚如何利用程序来进行MongoDB的操作。&lt;/p&gt;
+
+&lt;p&gt;10.1、Mongo-Java-2.x&lt;/p&gt;
+
+&lt;p&gt;下面通过几个程序代码来演示Mongo的数据库操作。&lt;/p&gt;
+
+&lt;p&gt;范例：连接数据库&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100310.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时数据库已经可以正常的进行连接操作了。当取得了MongoDB数据库的连接之后，那么就意味着可以进行集合操作了，例如：现在要保存一个deptcol的集合信息。&lt;/p&gt;
+
+&lt;p&gt;范例：保存数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100336.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时已经可以向集合里面成功的进行了数据的保存操作。&lt;/p&gt;
+
+&lt;p&gt;范例：数据读取&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100403.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以上的列出的操作有一些遗憾，就是要进行全部数据的显示，这样的做法明显是不好的，可以使用分页。&lt;/p&gt;
+
+&lt;p&gt;范例：使用分页处理&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100424.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是针对于查询，往往都需要设置一些查询条件，所有的查询条件可以通过BasicDBObject类设置。&lt;/p&gt;
+
+&lt;p&gt;范例：设置查询条件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100440.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：设置范围查询—— in&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100458.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：执行模糊查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100516.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;到此为止已经实现了数据的增加、查询等操作功能。&lt;/p&gt;
+
+&lt;p&gt;范例：数据修改&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100535.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：多行数据的修改&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100556.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：删除数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100613.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个时候基本的CRUD就完成了，强烈记住：只做这些功能。&lt;/p&gt;
+
+&lt;p&gt;10.2、Mongo-Java-3.x&lt;/p&gt;
+
+&lt;p&gt;Mongo 2.x的操作基本上流程都是固定的，但是在Mongo
+x里面这个类几乎就跟重写没什么区别了。&lt;/p&gt;
+
+&lt;p&gt;在Mongo 2.x开发包里面只需要使用MogoClient就可以定义连接地址与端口号。&lt;/p&gt;
+
+&lt;p&gt;范例：连接数据库&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100633.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：数据增加&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100652.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：查询全部数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100710.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：设置范围查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100730.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：模糊查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100851.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：分页显示&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100909.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：数据修改&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100925.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：删除数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118100944.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;范例：统计查询&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://gitee.com/stormzhai/pics/raw/master/images/20211118101005.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;MongoDB实际上是作为一个附属数据库存在，只有Node.JS把它作为正室，但是除了Node.JS之外，Mongo就是一个不能够单独使用的数据库，都需要与传统的关系型数据库匹配在一起使用。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>mac iterm2 rzsz 配置</title>
+      <link>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Tue, 14 Jan 2020 20:02:43 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2020/2020-01-14-maciterm-rzsz-%E9%85%8D%E7%BD%AE/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install laggardkernel/tap/iterm2-zmodem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+
+&lt;p&gt;配置iTerm2的触发器（点击菜单的Profiles，选择某个profile之后然后继续选择advanced → triggers，添加triggers），配置器触发如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Regular expression: rz waiting to receive.\*\*B0100
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-send-zmodem.sh
+Instant: checked
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Regular expression: \*\*B00000000000000
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
+Instant: checked
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://stormzhai.github.io/images/iTerm2-triggers-for-ZMODEM.png&#34; alt=&#34;图片说明&#34; /&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>curl基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Dec 2019 09:17:27 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-20-curl%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      
+        <description>
+
+&lt;p&gt;我们在客户端开发过程中总免不了和后端进行api对接，有时候需要对返回的数据格式进行调试，有时候每次运行客户端来发送请求，这个未免效率太低，这里就来介绍一个好用的工具&amp;ndash;curl。&lt;/p&gt;
+
+&lt;h2 id=&#34;curl&#34;&gt;curl&lt;/h2&gt;
+
+&lt;p&gt;curl是一个向服务器传输数据的工具，它支持http、https、ftp、ftps、scp、sftp、tftp、telnet等协议，这里只针对http进行讲解一些常用的用法，具体安装请自行搜索。&lt;/p&gt;
+
+&lt;h3 id=&#34;安装运行&#34;&gt;安装运行&lt;/h3&gt;
+
+&lt;p&gt;macOS 上使用 Homebrew 安装即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;打开百度&#34;&gt;打开百度&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着你就会看到百度的页面源代码输出。&lt;/p&gt;
+
+&lt;p&gt;如果要把这个网页保存下来，可以这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com &amp;gt; /tmp/baidu.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你会看到一条进度条，然后源码就被重定向到了/tmp/baidu.html。&lt;/p&gt;
+
+&lt;p&gt;或者：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -o /tmp/baidu.html http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;get请求&#34;&gt;GET请求&lt;/h2&gt;
+
+&lt;p&gt;默认直接请求一个url就是发出一个get请求，参数的话直接拼接在url里就好了，如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://www.baidu.com/s?wd=curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上述请求会上百度发起一条查询请求，参数是wd=url&lt;/p&gt;
+
+&lt;h2 id=&#34;post请求&#34;&gt;POST请求&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -d &amp;quot;name=test&amp;amp;page=1&amp;quot; http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;-d&lt;/strong&gt; 参数指定表单以POST的形式执行。&lt;/p&gt;
+
+&lt;h2 id=&#34;只展示header&#34;&gt;只展示Header&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -I  http://www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到只返回一些header信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.1 200 OK
+Date: Fri, 07 Nov 2014 09:48:58 GMT
+Content-Type: text/html; charset=utf-8
+Connection: Keep-Alive
+Vary: Accept-Encoding
+Set-Cookie: BAIDUID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BAIDUPSID=E9DB2F0AC95CB6BFDAD9D5CFDCED0A12; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+Set-Cookie: BDSVRTM=0; path=/
+Set-Cookie: BD_HOME=0; path=/
+Set-Cookie: H_PS_PSSID=9725_9165_1465_7800_9452_9498_6504_9509_6018_9700_9757_9531_9478_7798_9453_9793_9024; path=/; domain=.baidu.com
+P3P: CP=&amp;quot; OTI DSP COR IVA OUR IND COM &amp;quot;
+Cache-Control: private
+Cxy_all: baidu+3057b288b211c770a1463cc8519b62a8
+Expires: Fri, 07 Nov 2014 09:48:17 GMT
+X-Powered-By: HPHP
+Server: BWS/1.1
+BDPAGETYPE: 1
+BDQID: 0xfa28eff900012706
+BDUSERID: 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;显示通信过程&#34;&gt;显示通信过程&lt;/h2&gt;
+
+&lt;p&gt;-v参数可以显示一次http通信的整个过程，包括端口连接和http request头信息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -v www.baidu.com
+
+* Adding handle: conn: 0x7ffe4b003a00
+* Adding handle: send: 0
+* Adding handle: recv: 0
+* Curl_addHandleToPipeline: length: 1
+* - Conn 0 (0x7ffe4b003a00) send_pipe: 1, recv_pipe: 0
+* About to connect() to www.baidu.com port 80 (#0)
+*   Trying 61.135.169.125...
+* Connected to www.baidu.com (61.135.169.125) port 80 (#0)
+&amp;gt; GET / HTTP/1.1
+&amp;gt; User-Agent: curl/7.30.0
+&amp;gt; Host: www.baidu.com
+&amp;gt; Accept: */*
+&amp;gt;
+&amp;lt; HTTP/1.1 200 OK
+&amp;lt; Date: Fri, 07 Nov 2014 09:49:49 GMT
+&amp;lt; Content-Type: text/html; charset=utf-8
+&amp;lt; Transfer-Encoding: chunked
+&amp;lt; Connection: Keep-Alive
+&amp;lt; Vary: Accept-Encoding
+&amp;lt; Set-Cookie: BAIDUID=062E02D23FBB651CF8455B699DF02B64:FG=1; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&amp;lt; Set-Cookie: BAIDUPSID=062E02D23FBB651CF8455B699DF02B64; expires=Thu, 31-Dec-37 23:55:55 GMT; max-age=2147483647; path=/; domain=.baidu.com
+&amp;lt; Set-Cookie: BDSVRTM=0; path=/
+&amp;lt; Set-Cookie: BD_HOME=0; path=/
+&amp;lt; Set-Cookie: H_PS_PSSID=7744_1429_7801_9583_9499_6506_6018_9769_9699_9757_9532_9477_7799_9453_9716_9023; path=/; domain=.baidu.com
+&amp;lt; P3P: CP=&amp;quot; OTI DSP COR IVA OUR IND COM &amp;quot;
+&amp;lt; Cache-Control: private
+&amp;lt; Cxy_all: baidu+7dcb6b3c03d32c334d42f311919a14d6
+&amp;lt; Expires: Fri, 07 Nov 2014 09:49:20 GMT
+&amp;lt; X-Powered-By: HPHP
+* Server BWS/1.1 is not blacklisted
+&amp;lt; Server: BWS/1.1
+&amp;lt; BDPAGETYPE: 1
+&amp;lt; BDQID: 0xadb706860000088f
+&amp;lt; BDUSERID: 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你觉得上面的信息还不够，那么下面的命令可以查看更详细的通信过程。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --trace output.txt www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --trace-ascii output.txt www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行后，请打开output.txt文件查看。&lt;/p&gt;
+
+&lt;h2 id=&#34;http方法&#34;&gt;HTTP方法&lt;/h2&gt;
+
+&lt;p&gt;curl默认的HTTP方法是GET，使用-X参数可以支持其他动词。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -X POST www.example.com
+
+curl -X DELETE www.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;referer字段&#34;&gt;Referer字段&lt;/h2&gt;
+
+&lt;p&gt;有时你需要在http request头信息中，提供一个referer字段，表示你是从哪里跳转过来的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --referer http://www.example.com http://www.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;user-agent字段&#34;&gt;User Agent字段&lt;/h2&gt;
+
+&lt;p&gt;这个字段是用来表示客户端的设备信息。服务器有时会根据这个字段，针对不同设备，返回不同格式的网页，比如手机版和桌面版。&lt;/p&gt;
+
+&lt;p&gt;iPhone4的User Agent是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;curl可以这样模拟：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --user-agent &amp;quot;[User Agent]&amp;quot; [URL]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;增加头信息&#34;&gt;增加头信息&lt;/h2&gt;
+
+&lt;p&gt;有时需要在http request之中，自行增加一个头信息。&amp;ndash;header参数就可以起到这个作用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl --header &amp;quot;Content-Type:application/json&amp;quot; http://example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Via &lt;a href=&#34;https://stormzhang.com&#34;&gt;stormzhang&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>tmux基本使用</title>
+      <link>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 19 Dec 2019 20:02:11 +0800</pubDate>
+      
+      <guid>http://stormzhai.github.io/post/2019/2019-12-19-tmux%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+      
+        <description>
+
+&lt;h3 id=&#34;安装运行&#34;&gt;安装运行&lt;/h3&gt;
+
+&lt;p&gt;macOS 上使用 Homebrew 安装即可:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install tmux
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;快捷键&#34;&gt;快捷键&lt;/h3&gt;
+
+&lt;p&gt;一般情况下 tmux 中所有的快捷键都需要和前缀快捷键 ⌃b 来组合使用（注：⌃ 为 Mac 的 control 键），以下是常用的窗格（pane）快捷键列表，大家可以依次尝试下:&lt;/p&gt;
+
+&lt;h3 id=&#34;窗格操作&#34;&gt;窗格操作&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;% 左右平分出两个窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;rdquo; 上下平分出两个窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;x 关闭当前窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;{ 当前窗格前移&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;} 当前窗格后移&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;; 选择上次使用的窗格&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;o 选择下一个窗格，也可以使用上下左右方向键来选择&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;space 切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;z 最大化当前窗格，再次执行可恢复原来大小&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;q 显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;窗口操作&#34;&gt;窗口操作&lt;/h3&gt;
+
+&lt;p&gt;tmux 除了窗格以外，还有窗口（window） 的概念。依次使用以下快捷键来熟悉 tmux 的窗口操作：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;c 新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;p 切换至上一窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;n 切换至下一窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;w 窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&amp;amp; 关闭当前窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;, 重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;0 切换至 0 号窗口，使用其他数字 id 切换至对应窗口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;f 根据窗口名搜索选择窗口，可模糊匹配&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;会话操作&#34;&gt;会话操作&lt;/h3&gt;
+
+&lt;p&gt;如果运行了多次 tmux 命令则会开启多个 tmux 会话（session）。在 tmux 会话中，使用前缀快捷键 ⌃b 配合以下快捷键可操作会话：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;$ 重命名当前会话&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;s 选择会话列表&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;d detach 当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在 shell 主进程下运行以下命令可以操作 tmux 会话：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;tmux new -s foo # 新建名称为 foo 的会话
+tmux ls # 列出所有 tmux 会话
+tmux a # 恢复至上一次的会话
+tmux a -t foo # 恢复名称为 foo 的会话，会话默认名称为数字
+tmux kill-session -t foo # 删除名称为 foo 的会话
+tmux kill-server # 删除所有的会话
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;除以上提到的快捷键以外，tmux 还有许多其他的快捷键和命令，使用前缀快捷键 ⌃b 加 ? 可以查看所有的快捷键列表，该列表视图为 tmux copy 模式，该模式下可使用以下快捷键（无需加 ⌃b 前缀）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;⌃v 下一页
+Meta v 上一页 （tmux 快捷键为 Emacs 风格，这里的 Meta 键可用 Esc 模拟）
+⌃s 向前搜索
+q 退出 copy 模式
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Via &lt;a href=&#34;https://www.cnblogs.com/kaiye/p/6275207.html&#34;&gt;猫哥_kaiye&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
     
     <item>
       <title>About</title>
